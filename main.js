@@ -25,10 +25,30 @@ function newQuiz() {}
 
 /* 
 question() will display each question, as well as the options
+Within each question there will be a display of which question (out of 10) it is.
+
 */
 function question() {}
 
 /* 
-questionOptions() displays the answer options for each question 
+questionCount() will display which question (out of 10) it is.
+*/
+function questionCount() {}
+
+/* 
+questionOptions() displays the answer 'form/options' for each question - as well as the 'submit' button
 */
 function questionOptions() {}
+
+/* 
+results() displays the completed scores of how many questions were right and how many were wrong.
+This will be stored in an array, and display in the question box after the quiz has been completed.
+-- Storing the points will be counted as 'correct' or 'incorrect.'
+*/
+let resultsArr = [];
+function results() {}
+
+/* 
+runQuiz() will include all of the other needed functions to run
+*/
+function runQuiz() {}
