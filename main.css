@@ -35,6 +35,7 @@ header {
   color: white;
   padding: 10px;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .question {
@@ -43,6 +44,7 @@ header {
   margin: 20px auto;
   padding: 30px;
   border: 2px solid black;
+  text-align: center;
 }
 
 .options {
@@ -52,9 +54,36 @@ header {
   border: 2px solid black;
 }
 
+.correct {
+  background-color: green;
+  color: white;
+}
+
+.incorrect {
+  background-color: red;
+  color: white;
+}
+
 .q-num {
   font-size: 15px;
   width: 30%;
   margin: 0 auto;
   text-align: center;
+}
+
+.score {
+  text-align: center;
+}
+
+.finish {
+  text-align: center;
+}
+
+.finish button {
+  text-align: center;
+  padding: 20px;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
 }

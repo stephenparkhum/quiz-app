@@ -1,0 +1,38 @@
+Question: What is the name of the guitarist of Guns and Roses? 
+Options: Jimi Hendrix, Jimmy Page, Eddie Van Halen, Slash
+Answer: Slash
+
+Question: What Queen song become a sports anthem in 1977?
+Options: Stairway to Heaven, We Will Rock You, Sweet Child O’ Mine, TNT
+Answer: We Will Rock You
+
+Question: What is the name of the guitarist is famous for his ‘two hand tapping’ technique that gained him worldwide notoriety for the song Eruption?
+Options: Ace Frehley, Eddie Van Halen, Brian May, Stevie Ray Vaughn
+Answer: Eddie Van Halen
+
+Question: What popular glam-rock band wrote the song ‘Girls Girls Girls’?
+Options: Helter Skelter, Jimmy and the News, Motley Crue, KISS
+Answer: Motley Crue
+
+Question: What is the name of the drummer in Led Zeppelin who died in 1980? 
+Options: Keith Moon, John Paul Jones, John Bonham, Judas Priest
+Answer: John Bonham
+
+Question: Out of these heavy metal artists, who has sold the most records worldwide? 
+Options: Judas Priest, Iron Maiden, Metallica, Motley Crue
+Answer: Metallica
+
+Question: Which Canadian band is one of the interest’s most disliked bands? 
+Options: Devin Townsend, Nickelback, Justin Bieber, Drake
+
+Question: What is the name of the final album that Metallica’s late bassist Cliff Burton played on? 
+Options: Master of Puppets, Ride the Lightning, St. Anger, ...And Justice For All 
+Answer: Master of Puppets
+
+Question: What British band wrote the song ‘Let it Be?’ 
+Options: Queen, The Beatles, The Rolling Stones, The Clash
+Answer: The Beatles
+
+Question: What is the name of the German artist who released the song Du Hast? 
+Options: Rammstein, Oomph!, Static X, Slipknot
+Answer: Rammstein 
