@@ -1,3 +1,5 @@
+"use strict";
+
 // :MUSIC QUERY: NOTES
 /*
 
@@ -38,12 +40,14 @@ function questionCount() {}
 /* 
 questionOptions() displays the answer 'form/options' for each question - as well as the 'submit' button
 */
-function questionOptions() {}
+function questionOptions() {
+  // console.log(questions[0].options[0].option_1);
+}
 
 /* 
 results() displays the completed scores of how many questions were right and how many were wrong.
 This will be stored in an array, and display in the question box after the quiz has been completed.
--- Storing the points will be counted as 'correct' or 'incorrect.'
+-- Storing the points will be counted as 'correct' or 'incorrect'
 */
 let resultsArr = [];
 function results() {}
@@ -52,3 +56,5 @@ function results() {}
 runQuiz() will include all of the other needed functions to run
 */
 function runQuiz() {}
+
+runQuiz();
