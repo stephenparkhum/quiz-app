@@ -33,4 +33,28 @@ header {
 .new-quiz button {
   background-color: black;
   color: white;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.question {
+  font-size: 20px;
+  width: 50%;
+  margin: 20px auto;
+  padding: 30px;
+  border: 2px solid black;
+}
+
+.options {
+  width: 30%;
+  margin: 40px auto;
+  padding: 10px;
+  border: 2px solid black;
+}
+
+.q-num {
+  font-size: 15px;
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
 }
