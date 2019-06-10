@@ -17,7 +17,7 @@
   </head>
   <body>
     <header>
-      <h1>Music Query</h1>
+      <h1>Music Query - <a href="/new-quiz.html">New Quiz</a></h1>
     </header>
     <main>
       <div class="question">
@@ -27,12 +27,24 @@
         </p>
       </div>
       <div class="options">
-        <ul>
-          <li>Master of Puppets</li>
-          <li>Ride the Lightning</li>
-          <li>St. Anger</li>
-          <li>...And Justice For All</li>
-        </ul>
+        <form action="">
+          <input
+            type="radio"
+            name="option"
+            id="option1"
+            value="option1"
+          />Master of Puppets<br />
+          <input type="radio" name="option" id="option2" value="option2" />Ride
+          the Lightning<br />
+          <input type="radio" name="option" id="option3" value="option3" />St.
+          Anger<br />
+          <input
+            type="radio"
+            name="option"
+            id="option4"
+            value="option4"
+          />...And Justice For All<br />
+        </form>
         <button>Submit</button>
       </div>
       <div class="q-num">
