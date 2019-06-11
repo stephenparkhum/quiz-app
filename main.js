@@ -18,15 +18,21 @@
 5. New Quiz button, which will restart the quiz
 */
 
+
 // USERS SCORES
 let userScore = [];
-let questionNum = userScore.length;
+let questionNum = 0;
 
-function startPage(num) {
+function startPage() {
+  $("main").append(
+    '<div class="question"><p></p><p class="question-count"></p></div>'
+  );
+  $("main").append(`<div class="new-quiz">
+  <button>Start Quiz</button>
+</div>`);
   $(".question p:first").text(
     `Test your music knowledge with this interactive quiz!`
   );
-  newQuiz(num);
 }
 
 /* 
@@ -34,17 +40,6 @@ newQuiz() will show a dialog that asks if the user wants to start a new quiz
 Once clicked, it'll show the question + answer. 
 Ultimately this will 'hide; the new quiz button, as well as 'show' the questions
 */
-
-function pgLayout() {
-  $("main").append(
-    '<div class="question"><p></p><p class="question-count"></p></div>'
-  );
-  $("main").append(`<div class="new-quiz">
-  <button>Start Quiz</button>
-</div>`);
-
-  nextBtn();
-}
 
 function newQuiz(num) {
   $(document).on("click", ".new-quiz button", () => {
@@ -54,6 +49,24 @@ function newQuiz(num) {
     $(".new-quiz button").remove();
   });
 }
+
+// ${questions[num].question}
+
+function question(num) {
+  num = questionNum;
+  $(".question p:first").text(`${questions[num].question}`);
+  questionCount(num);
+  optionsInit(num);
+  console.log('question() is running');
+}
+
+/* 
+questionCount() will display which question (out of 10) it is.
+*/
+function questionCount(num) {
+  $(".question-count").text(`Question ${num + 1} of 10`);
+}
+
 
 /* 
 optionForm() will display the set of options the user has to pick from
@@ -69,34 +82,30 @@ function formInit() {
 
 function optionsInit(num) {
   let optionList = ["option_1", "option_2", "option_3", "option_4"];
-  num = questionNum;
   newOptions(num);
-  $('form').append(`<button class="submit-button">Submit</button>`);
-};
-
-function removeOptions(num) {
-  let optionCount = 4;
-  for (let i = 0; i < optionCount; i++) {
-    $('form').find('span').remove();
-    $('form').find('input').remove();
-  }
 }
 
 function newOptions(num) {
-  let optionList = ["option_1", "option_2", "option_3", "option_4"];
   num = questionNum;
   for (let i = 0; i < 4; i++) {
-    let currentOption = optionList[i];
       $('form').append('<input />');
       $('input').attr('type', 'radio');
       $('input').attr('name', 'option');
       $('input').attr('id', `${'option' + i+1}`);
       $('input').attr('value', `${questions[num].options[i].option}`);
       $('form').append(`<span>${$('input').attr('value')}</span>`);
-      
-
   }
-};
+  $('form').append(`<button class="submit-button">Submit</button>`); 
+}
+
+function removeOptions() {
+  let optionCount = 4;
+  for (let i = 0; i < optionCount; i++) {
+    $('form').find('span').remove();
+    $('form').find('input').remove();
+  }
+  $('form').find("button .submit-button").remove();
+}
 
 // function formOptions(num) {
 //   
@@ -132,54 +141,31 @@ function newOptions(num) {
 question() will display each question, as well as the options
 Within each question there will be a display of which question (out of 10) it is.
 */
-function question(num) {
-  $(".question p:first").text(`${questions[num].question}`);
-  questionCount(num);
-  $("form").html(optionsInit());
-}
-
-/* 
-questionCount() will display which question (out of 10) it is.
-*/
-function questionCount(int) {
-  $(".question-count").text(`Question ${int + 1} of 10`);
-}
-
-function addResult(num) {
-  // if ()
-  console.log('testing results');
-  console.log(userScore);
-}
 
 // BUTTONS
 
-function nextBtn(num) {
+function nextBtn(num) { 
   $(document).on("click", ".next-btn", () => {
-    console.log(userScore.length);
-    num = questionNum;
-    if (num < 9) {
-      userScore.push(1),
+    console.log('working');
       question(num);
-      removeOptions(num);
-      newOptions(num);
-    } else if (userScore.length === 9) {
-      $('.next-btn').text('Complete Quiz').addClass('complete-quiz');
-      userScore = [];
-    }
-  })
+      removeOptions();
+      userScore.push('correct');
+  });
 }
 
 function submitBtn() {
-  $(".submit-button").on("click", function(event) {
+  $(document).on("click", ".submit-button", function(event) {
     event.preventDefault();
   });
 }
 
+// RESULTS
 /* 
 results() displays the completed scores of how many questions were right and how many were wrong.
 This will be stored in an array, and display in the question box after the quiz has been completed.
 -- Storing the points will be counted as 'correct' or 'incorrect'
 */
+
 function resultsPage(result) {
   $(document).on('click', '.complete-quiz', () => {
     $('.question p:first').text('Congratulations! You have finished the quiz!');
@@ -189,15 +175,20 @@ function resultsPage(result) {
     $('.next-btn').remove()
     $('.new-quiz').html('<button>Try Again</button>');
   });
-  
 }
+
+
+
+// RUN APP
 /* 
 runQuiz() will include all of the other needed functions to run
 */
-function runQuiz() {
-  pgLayout();
-  startPage(questionNum);
-  resultsPage();
+function runQuiz(num) {
+  // pgLayout();
+  startPage();
+  newQuiz(num);
+  nextBtn();
+  // resultsPage();
 }
 
-runQuiz();
+runQuiz(questionNum);
