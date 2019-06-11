@@ -144,6 +144,11 @@ form span {
 }
 
 /* COMPLETION */
+.complete-quiz {
+  background-color: green;
+  color: white; 
+
+}
 .finish {
   text-align: center;
 }

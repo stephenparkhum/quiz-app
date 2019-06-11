@@ -20,7 +20,7 @@
 
 // USERS SCORES
 let userScore = [];
-let questionNum = 0;
+let questionNum = userScore.length;
 
 function startPage(num) {
   $(".question p:first").text(
@@ -47,10 +47,10 @@ function pgLayout() {
 }
 
 function newQuiz(num) {
-  $(".new-quiz button").on("click", () => {
+  $(document).on("click", ".new-quiz button", () => {
     question(num);
     formInit();
-    optionsInit(num, questions);
+    optionsInit(num);
     $(".new-quiz button").remove();
   });
 }
@@ -70,23 +70,33 @@ function formInit() {
 function optionsInit(num) {
   let optionList = ["option_1", "option_2", "option_3", "option_4"];
   num = questionNum;
-  for (let i = 0; i < 4; i++) {
-  let currentOption = optionList[i];
-  $('form').append('<input />');
-  $('input').attr('type', 'radio');
-  $('input').attr('name', 'option');
-  $('input').attr('id', `${'option' + i+1}`);
-  $('input').attr('value', `${questions[num].options[i].option}`);
-  $('form').append(`<span>${$('input').attr('value')}</span>`);
-  }
-  
+  newOptions(num);
+  $('form').append(`<button class="submit-button">Submit</button>`);
 };
 
-function newOptions(num) {
-    $('form').find('input').attr('id', `${'option' + num+1}`);
-    $('input').attr('value', `${questions[0].options[0].option_1}`);
-    $('form').append(`<span>${$('input').attr('value')}</span>`);
+function removeOptions(num) {
+  let optionCount = 4;
+  for (let i = 0; i < optionCount; i++) {
+    $('form').find('span').remove();
+    $('form').find('input').remove();
+  }
 }
+
+function newOptions(num) {
+  let optionList = ["option_1", "option_2", "option_3", "option_4"];
+  num = questionNum;
+  for (let i = 0; i < 4; i++) {
+    let currentOption = optionList[i];
+      $('form').append('<input />');
+      $('input').attr('type', 'radio');
+      $('input').attr('name', 'option');
+      $('input').attr('id', `${'option' + i+1}`);
+      $('input').attr('value', `${questions[num].options[i].option}`);
+      $('form').append(`<span>${$('input').attr('value')}</span>`);
+      
+
+  }
+};
 
 // function formOptions(num) {
 //   
@@ -135,15 +145,28 @@ function questionCount(int) {
   $(".question-count").text(`Question ${int + 1} of 10`);
 }
 
+function addResult(num) {
+  // if ()
+  console.log('testing results');
+  console.log(userScore);
+}
+
 // BUTTONS
 
 function nextBtn(num) {
-  num = questionNum;
   $(document).on("click", ".next-btn", () => {
-    num += 1;
-    question(num);
-    $('.option-form').append(newOptions(num));
-  });
+    console.log(userScore.length);
+    num = questionNum;
+    if (num < 9) {
+      userScore.push(1),
+      question(num);
+      removeOptions(num);
+      newOptions(num);
+    } else if (userScore.length === 9) {
+      $('.next-btn').text('Complete Quiz').addClass('complete-quiz');
+      userScore = [];
+    }
+  })
 }
 
 function submitBtn() {
@@ -152,29 +175,29 @@ function submitBtn() {
   });
 }
 
-// /*
-// questionOptions() displays the answer 'form/options' for each question - as well as the 'submit' button
-// */
-// function questionOptions() {
-//   // console.log(questions[0].options[0].option_1);
-// }
-
 /* 
 results() displays the completed scores of how many questions were right and how many were wrong.
 This will be stored in an array, and display in the question box after the quiz has been completed.
 -- Storing the points will be counted as 'correct' or 'incorrect'
 */
-function results(result) {
-  return userScore.push(result);
+function resultsPage(result) {
+  $(document).on('click', '.complete-quiz', () => {
+    $('.question p:first').text('Congratulations! You have finished the quiz!');
+    $('.question').append('<h4>Your score is 3 out of 10! Better luck next time!</h4>');
+    $('.options').remove();
+    $('.question-count').remove();
+    $('.next-btn').remove()
+    $('.new-quiz').html('<button>Try Again</button>');
+  });
+  
 }
-
 /* 
 runQuiz() will include all of the other needed functions to run
 */
 function runQuiz() {
   pgLayout();
   startPage(questionNum);
-  results();
+  resultsPage();
 }
 
 runQuiz();
