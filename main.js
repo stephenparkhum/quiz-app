@@ -147,9 +147,7 @@ Within each question there will be a display of which question (out of 10) it is
 function nextBtn(num) { 
   $(document).on("click", ".next-btn", () => {
     console.log('working');
-      question(num);
-      removeOptions();
-      userScore.push('correct');
+
   });
 }
 
