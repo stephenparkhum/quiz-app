@@ -34,5 +34,5 @@ Options: Queen, The Beatles, The Rolling Stones, The Clash
 Answer: The Beatles
 
 Question: What is the name of the German artist who released the song Du Hast? 
-Options: Rammstein, Oomph!, Static X, Slipknot
+Options: Rammstein, Oomph!, Static-X, Slipknot
 Answer: Rammstein 

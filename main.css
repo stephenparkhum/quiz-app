@@ -68,6 +68,13 @@ header .new-link {
 }
 
 /* QUESTION PAGE */
+div.question {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 200px;
+}
+
 .question {
   font-size: 20px;
   width: 40%;
@@ -84,7 +91,7 @@ flex-direction: column;
 }
 
 form > input {
-  padding: 20px;
+  margin: 10px;
 }
 
 form button {
@@ -95,7 +102,12 @@ form span {
   padding: 10px;
 }
 
+.question-text {
+  align-self: center;
+}
+
 .question-count {
+  align-self: center;
   font-size: 15px;
 }
 

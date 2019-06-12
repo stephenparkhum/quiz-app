@@ -105,6 +105,7 @@ function newOptions(num) {
       $('input').attr('value', `${questions[num].options[i].option}`);
       $('form').append(`<label for=${questions[num].options[i]['option']}>${questions[num].options[i].option}</label>`);
   }
+  $('form').append(`<button class="submit-button">Submit</button>`); 
 }
 
 function removeOptions() {
@@ -112,7 +113,7 @@ function removeOptions() {
   for (let i = 0; i < optionCount; i++) {
     $('form').find('input').remove();
     $('form').find('label').remove();
-    $('form').find("button .submit-button").remove();
+    $('form').find(".submit-button").remove();
   }
   
 }
@@ -122,8 +123,8 @@ function removeOptions() {
 function nextBtn() { 
   let questionState = 0;
   $(document).on("click", ".next-btn", () => {
-    console.log(questions[questionState].options[questionState].option);
     console.log(questionState);
+    console.log(questions[questionState].options[questionState].option);
     if (questionState < 9) {
       questionState++;
       question(questionState);
@@ -153,13 +154,23 @@ This will be stored in an array, and display in the question box after the quiz 
 -- Storing the points will be counted as 'correct' or 'incorrect'
 */
 
-function resultsPage() {
+function calcResults(results) {
+  let userRightCount = 0;
+  for (let i = 0; i < results.length; i++) {
+    if (results[i] === 1) {
+      userRightCount++;
+    }
+  }
+  return userRightCount;
+}
+
+function resultsPage(results) {
   $(document).on('click', '.complete-quiz', () => {
     $('.question p:first').text('Congratulations! You have finished the quiz!');
-    $('.question').append('<h4>Your score is 3 out of 10! Better luck next time!</h4>');
+    $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10! Better luck next time!</h4>`);
     $('.options').remove();
     $('.question-count').remove();
-    $('.next-btn').remove()
+    $('.next-btn').remove();
     $('.new-quiz').html('<button>Try Again</button>');
   });
 }
