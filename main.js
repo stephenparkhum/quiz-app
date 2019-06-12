@@ -71,13 +71,24 @@ function questionCount(num) {
 /* 
 optionForm() will display the set of options the user has to pick from
 */
-function formInit() {
+function formInit(num) {
   let initialForm = `<div class="options">
   <form action="" class="option-form">
   </form>
 </div>
 <button class="next-btn">Next</button></a>`;
   $("main").append(initialForm);
+  num = questionNum;
+  for (let i = 0; i < 4; i++) {
+      $('form').append('<input />');
+      $('form').addClass('<input />');
+      $('input').attr('type', 'radio');
+      $('input').attr('name', 'option');
+      $('input').attr('id', `${'option_' + i}`);
+      $('input').attr('value', `${questions[num].options[i].option}`);
+      $('form').append(`<label for=${questions[num].options[i]['option']}>${questions[num].options[i].option}</label>`);
+  }
+  $('form').append(`<button class="submit-button">Submit</button>`); 
 }
 
 function optionsInit(num) {
@@ -86,16 +97,7 @@ function optionsInit(num) {
 }
 
 function newOptions(num) {
-  num = questionNum;
-  for (let i = 0; i < 4; i++) {
-      $('form').append('<input />');
-      $('input').attr('type', 'radio');
-      $('input').attr('name', 'option');
-      $('input').attr('id', `${'option' + i+1}`);
-      $('input').attr('value', `${questions[num].options[i].option}`);
-      $('form').append(`<span>${$('input').attr('value')}</span>`);
-  }
-  $('form').append(`<button class="submit-button">Submit</button>`); 
+  
 }
 
 function removeOptions() {
@@ -144,9 +146,13 @@ Within each question there will be a display of which question (out of 10) it is
 
 // BUTTONS
 
-function nextBtn(num) { 
+function nextBtn() { 
+  let questionState = 0;
   $(document).on("click", ".next-btn", () => {
-    console.log('working');
+    newOptions(questionState);
+    console.log(questions[questionState].options[0].option);
+    console.log(questionState);
+    questionState++;
 
   });
 }
