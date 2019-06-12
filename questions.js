@@ -41,12 +41,62 @@ const questions = [
   },
   {
     q_id: 5,
-    question:"What is the name of the guitarist is famous for his ‘two hand tapping’ technique that gained him worldwide notoriety for the song Eruption?",
+    question:"What is the name of the drummer in Led Zeppelin who died in 1980?",
     options: [
-      { option: "Ace Frehley", answer: false },
-      { option: "Eddie Van Halen", answer: true },
-      { option: "Brian May", answer: false },
-      { option: "Stevie Ray Vaughn", answer: false }
+      { option: "Keith Moon", answer: false },
+      { option: "John Paul Jones", answer: false },
+      { option: "John Bonham", answer: true },
+      { option: "Rob Halford", answer: false }
+    ]
+  },
+  {
+    q_id: 6,
+    question:"What is the name of the drummer in Led Zeppelin who died in 1980?",
+    options: [
+      { option: "Keith Moon", answer: false },
+      { option: "John Paul Jones", answer: false },
+      { option: "John Bonham", answer: true },
+      { option: "Rob Halford", answer: false }
+    ]
+  },
+  {
+    q_id: 7,
+    question:"What is the name of the drummer in Led Zeppelin who died in 1980?",
+    options: [
+      { option: "Keith Moon", answer: false },
+      { option: "John Paul Jones", answer: false },
+      { option: "John Bonham", answer: true },
+      { option: "Rob Halford", answer: false }
+    ]
+  },
+  {
+    q_id: 8,
+    question:"What is the name of the drummer in Led Zeppelin who died in 1980?",
+    options: [
+      { option: "Keith Moon", answer: false },
+      { option: "John Paul Jones", answer: false },
+      { option: "John Bonham", answer: true },
+      { option: "Rob Halford", answer: false }
+    ]
+  },
+  {
+    q_id: 9,
+    question:"What is the name of the drummer in Led Zeppelin who died in 1980?",
+    options: [
+      { option: "Keith Moon", answer: false },
+      { option: "John Paul Jones", answer: false },
+      { option: "John Bonham", answer: true },
+      { option: "Rob Halford", answer: false }
+    ]
+  },
+  {
+    q_id: 10,
+    question:"What is the name of the drummer in Led Zeppelin who died in 1980?",
+    options: [
+      { option: "Keith Moon", answer: false },
+      { option: "John Paul Jones", answer: false },
+      { option: "John Bonham", answer: true },
+      { option: "Rob Halford", answer: false }
     ]
   },
 ];

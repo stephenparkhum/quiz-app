@@ -152,8 +152,12 @@ function nextBtn() {
     newOptions(questionState);
     console.log(questions[questionState].options[0].option);
     console.log(questionState);
-    questionState++;
-
+    if (questionState < 9) {
+      questionState++;
+    } else {
+      $('.next-btn').text('COMPLETE').addClass('complete-quiz ');
+    }
+    
   });
 }
 
