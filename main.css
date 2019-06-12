@@ -70,10 +70,11 @@ header .new-link {
 /* QUESTION PAGE */
 .question {
   font-size: 20px;
-  width: 50%;
+  width: 40%;
   margin: 20px auto;
   padding: 30px;
-  border: 2px solid black;
+  border: 1px solid black;
+  border-radius: 5px;
   text-align: center;
 }
 
@@ -105,8 +106,9 @@ form span {
 .options {
   width: 30%;
   margin: 40px auto;
-  padding: 10px;
-  border: 2px solid black;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .correct {
