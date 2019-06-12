@@ -45,7 +45,6 @@ function newQuiz(num) {
   $(document).on("click", ".new-quiz", () => {
     question(num);
     formInit();
-    // optionsInit(num);
     $(".new-quiz button").remove();
   });
 }
@@ -81,7 +80,6 @@ function formInit(num) {
   num = 0;
   for (let i = 0; i < 4; i++) {
       $('form').append('<input />');
-      $('form').addClass('<input />');
       $('input').attr('type', 'radio');
       $('input').attr('name', 'option');
       $('input').attr('id', `${'option_' + i}`);
@@ -103,7 +101,7 @@ function newOptions(num) {
       $('input').attr('name', 'option');
       $('input').attr('id', `${'option_' + i}`);
       $('input').attr('value', `${questions[num].options[i].option}`);
-      $('form').append(`<label for=${questions[num].options[i]['option']}>${questions[num].options[i].option}</label>`);
+      $('form').append(`<label for=${questions[num].options[i].option}>${questions[num].options[i].option}</label>`);
   }
   $('form').append(`<button class="submit-button">Submit</button>`); 
 }
@@ -120,22 +118,27 @@ function removeOptions() {
 
 // BUTTONS
 
-function nextBtn() { 
+function nextBtn(num) { 
   let questionState = 0;
   $(document).on("click", ".next-btn", () => {
-    console.log(questionState);
-    console.log(questions[questionState].options[questionState].option);
-    if (questionState < 9) {
-      questionState++;
+    
+    // console.log(questionState);
+    // console.log(questions[questionState].options[questionState].option);
+    if (questionState != 9) {
       question(questionState);
       removeOptions(questionState);
       newOptions(questionState);
+      console.log(questionState);
 
     } else {
+      question(questionState);
+      removeOptions(questionState);
+      newOptions(questionState);
       $('.next-btn').text('Complete Quiz').addClass('complete-quiz ');
-      resultsPage();
+      resultsPage(userScore);
 
     }
+    questionState++;
     
   });
 }
@@ -166,8 +169,16 @@ function calcResults(results) {
 
 function resultsPage(results) {
   $(document).on('click', '.complete-quiz', () => {
+    let userResults = calcResults(results);
     $('.question p:first').text('Congratulations! You have finished the quiz!');
-    $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10! Better luck next time!</h4>`);
+    if (userResults <= 9 && userResults >=6 ) {
+      $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10! Great job!</h4>`);
+    } else if (userResults == 10) {
+      $('.question').append(`<h4>You got a perfect score! <span>${calcResults(results)}</span> out of 10! Magnificent!</h4>`);
+    } else {
+      $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10. Better luck next time!</h4>`);
+    }
+    
     $('.options').remove();
     $('.question-count').remove();
     $('.next-btn').remove();

@@ -94,7 +94,7 @@ let questions = [
     question:"What is the name of the German artist who released the song Du Hast? ",
     options: [
       { option: "Slipknot", answer: false },
-      { option: "JStatic-X", answer: false },
+      { option: "Static-X", answer: false },
       { option: "Oomph!", answer: false },
       { option: "Rammstein", answer: true }
     ]
