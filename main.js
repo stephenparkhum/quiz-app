@@ -3,13 +3,6 @@
 // :MUSIC QUERY: NOTES
 /*
 
-******* STEPS ******* 
-1. Line out user stories 
-2. Create Function Stubs
-3. Add questions to 'questions.js'
-3. Implement functions
-
-
 ******* USER STORES ******* 
 1. User can start a new quiz 
 2. Question is displayed, with options
@@ -44,7 +37,7 @@ Ultimately this will 'hide; the new quiz button, as well as 'show' the questions
 function newQuiz(num) {
   $(document).on("click", ".new-quiz", () => {
     question(num);
-    formInit();
+    formInit(num);
     $(".new-quiz button").remove();
   });
 }
@@ -77,31 +70,14 @@ function formInit(num) {
 </div>
 <button class="next-btn">Next</button></a>`;
   $("main").append(initialForm);
-  num = 0;
-  for (let i = 0; i < 4; i++) {
-      $('form').append('<input />');
-      $('input').attr('type', 'radio');
-      $('input').attr('name', 'option');
-      $('input').attr('id', `${'option_' + i}`);
-      $('input').attr('value', `${questions[num].options[i].option}`);
-      $('form').append(`<label for=${questions[num].options[i]['option']}>${questions[num].options[i].option}</label>`);
-  }
-  $('form').append(`<button class="submit-button">Submit</button>`); 
+  newOptions(num);
 }
 
-// function optionsInit(num) {
-//   let optionList = ["option_1", "option_2", "option_3", "option_4"];
-//   newOptions(num);
-// }
-
 function newOptions(num) {
+  let labelsAndInputs;
     for (let i = 0; i < 4; i++) {
-      $('form').append('<input />');
-      $('input').attr('type', 'radio');
-      $('input').attr('name', 'option');
-      $('input').attr('id', `${'option_' + i}`);
-      $('input').attr('value', `${questions[num].options[i].option}`);
-      $('form').append(`<label for=${questions[num].options[i].option}>${questions[num].options[i].option}</label>`);
+      labelsAndInputs = `<label><input type="radio" name="option" id="${questions[num].q_id}" value="${questions[num].options[i].option}"/>${questions[num].options[i].option}</label>`;
+      $('form').append(labelsAndInputs);
   }
   $('form').append(`<button class="submit-button">Submit</button>`); 
 }
@@ -113,27 +89,25 @@ function removeOptions() {
     $('form').find('label').remove();
     $('form').find(".submit-button").remove();
   }
-  
+}
+
+function questionIncrement(num) {
+      question(num);
+      removeOptions(num);
+      newOptions(num);
+      console.log('question inc. is working');
 }
 
 // BUTTONS
 
-function nextBtn(num) { 
-  let questionState = 0;
+function nextBtn() { 
+  let questionState = 1;
   $(document).on("click", ".next-btn", () => {
-    
-    // console.log(questionState);
-    // console.log(questions[questionState].options[questionState].option);
     if (questionState != 9) {
-      question(questionState);
-      removeOptions(questionState);
-      newOptions(questionState);
+      questionIncrement(questionState);
       console.log(questionState);
-
     } else {
-      question(questionState);
-      removeOptions(questionState);
-      newOptions(questionState);
+      questionIncrement(questionState);
       $('.next-btn').text('Complete Quiz').addClass('complete-quiz ');
       resultsPage(userScore);
 
