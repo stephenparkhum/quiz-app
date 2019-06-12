@@ -50,13 +50,14 @@ function newQuiz(num) {
   });
 }
 
-// ${questions[num].question}
-
-function question(num) {
-  num = questionNum;
-  $(".question p:first").text(`${questions[num].question}`);
-  questionCount(num);
-  // optionsInit(num);
+/* 
+question() will display each question, as well as the options
+Within each question there will be a display of which question (out of 10) it is.
+*/
+function question() {
+  let questionState = 0;
+  $(".question p").text(`${questions[questionState].question}`);
+  questionCount(questionState);
   console.log('question() is running');
 }
 
@@ -78,7 +79,7 @@ function formInit(num) {
 </div>
 <button class="next-btn">Next</button></a>`;
   $("main").append(initialForm);
-  num = questionNum;
+  num = 0;
   for (let i = 0; i < 4; i++) {
       $('form').append('<input />');
       $('form').addClass('<input />');
@@ -106,33 +107,31 @@ function newOptions(num) {
       $('input').attr('value', `${questions[num].options[i].option}`);
       $('form').append(`<label for=${questions[num].options[i]['option']}>${questions[num].options[i].option}</label>`);
   }
-  $('form').append(`<button class="submit-button">Submit</button>`);  
 }
 
 function removeOptions() {
   let optionCount = 4;
   for (let i = 0; i < optionCount; i++) {
-    $('form').find('span').remove();
     $('form').find('input').remove();
+    $('form').find('label').remove();
+    // $('form').find("button .submit-button").remove();
   }
-  $('form').find("button .submit-button").remove();
+  
 }
-
-/* 
-question() will display each question, as well as the options
-Within each question there will be a display of which question (out of 10) it is.
-*/
 
 // BUTTONS
 
 function nextBtn() { 
   let questionState = 0;
   $(document).on("click", ".next-btn", () => {
-    console.log(questions[questionState].options[0].option);
+    console.log(questions[questionState].options[questionState].option);
     console.log(questionState);
     if (questionState < 9) {
-      $('form').replaceWith(newOptions(questionState));
       questionState++;
+      question();
+      removeOptions(questionState);
+      newOptions(questionState);
+
     } else {
       $('.next-btn').text('Complete Quiz').addClass('complete-quiz ');
       resultsPage();

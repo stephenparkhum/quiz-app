@@ -1,4 +1,4 @@
-const questions = [
+let questions = [
   {
     q_id: 1,
     question: "What is the name of the guitarist of Guns and Roses?",
