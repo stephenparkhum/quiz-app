@@ -1,9 +1,9 @@
 :root {
   /* MAIN COLORS */
-  --dark: #112d2d;
-  --primary: #287272;
-  --secondary: #9cd8d8;
-  --white: #fff9f9;
+  --dark: #250272;
+  --primary: #694DA5;
+  --secondary: #B5AFD8;
+  --white: #F2F2F2;
 
   /* CORRECT / INCORRECT COLORS */
   --incorrect: #ff3d00;

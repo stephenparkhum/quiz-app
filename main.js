@@ -25,7 +25,7 @@ let questionNum = 0;
 
 function startPage() {
   $("main").append(
-    '<div class="question"><p></p><p class="question-count"></p></div>'
+    '<div class="question"><p class="question-text"></p><p class="question-count"></p></div>'
   );
   $("main").append(`<div class="new-quiz">
   <button>Start Quiz</button>
@@ -54,10 +54,9 @@ function newQuiz(num) {
 question() will display each question, as well as the options
 Within each question there will be a display of which question (out of 10) it is.
 */
-function question() {
-  let questionState = 0;
-  $(".question p").text(`${questions[questionState].question}`);
-  questionCount(questionState);
+function question(num) {
+  $(".question-text").text(`${questions[num].question}`);
+  questionCount(num);
   console.log('question() is running');
 }
 
@@ -100,7 +99,6 @@ function formInit(num) {
 function newOptions(num) {
     for (let i = 0; i < 4; i++) {
       $('form').append('<input />');
-      $('form').addClass('<input />');
       $('input').attr('type', 'radio');
       $('input').attr('name', 'option');
       $('input').attr('id', `${'option_' + i}`);
@@ -114,7 +112,7 @@ function removeOptions() {
   for (let i = 0; i < optionCount; i++) {
     $('form').find('input').remove();
     $('form').find('label').remove();
-    // $('form').find("button .submit-button").remove();
+    $('form').find("button .submit-button").remove();
   }
   
 }
@@ -128,7 +126,7 @@ function nextBtn() {
     console.log(questionState);
     if (questionState < 9) {
       questionState++;
-      question();
+      question(questionState);
       removeOptions(questionState);
       newOptions(questionState);
 
@@ -144,6 +142,7 @@ function nextBtn() {
 function submitBtn() {
   $(document).on("click", ".submit-button", function(event) {
     event.preventDefault();
+    console.log('submitBtn() is running');
   });
 }
 
@@ -176,6 +175,7 @@ function runQuiz(num) {
   startPage();
   newQuiz(num);
   nextBtn();
+  submitBtn();
   // resultsPage();
 }
 
