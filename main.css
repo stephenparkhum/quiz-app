@@ -1,9 +1,11 @@
 :root {
   /* MAIN COLORS */
   --dark: #250272;
+  --dark-shade: #25027238;
   --primary: #694DA5;
   --secondary: #B5AFD8;
   --white: #F2F2F2;
+  --b-l: 1px solid black;
 
   /* CORRECT / INCORRECT COLORS */
   --incorrect: #ff3d00;
@@ -18,17 +20,27 @@
 }
 
 body {
-  margin: 0;
+  height: 100vh;
+  width: 100%;
   background-color: var(--white);
+  margin: 0;
   color: black;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
 header {
+  top: 0;
   width: 100%;
   font-weight: 100;
-  margin: 0 0;
-  padding: 5px;
-  background-color: var(--dark);
+  align-self: flex-start; 
+  padding: 10px 15px;
+  background-color: var(--primary);
   color: white;
 }
 
@@ -38,6 +50,7 @@ header h1 {
 
 header .new-link {
   color: var(--dark);
+  align-self: center;
   font-weight: 500;
   font-size: 15px;
   text-decoration: none;
@@ -60,7 +73,7 @@ header .new-link {
 }
 
 .new-quiz button {
-  background-color: var(--dark);
+  background-color: var(--primary);
   color: var(--white);
   padding: 10px;
   font-size: 20px;
@@ -80,30 +93,33 @@ div.question {
   width: 40%;
   margin: 20px auto;
   padding: 30px;
-  border: 1px solid black;
+  border-top: 1px solid var(--primary);
+  border-left: 1px solid var(--primary);
+  border-right: 1px solid var(--primary);
+  border-bottom: 15px solid var(--primary);
   border-radius: 5px;
   text-align: center;
+  box-shadow: 5px 10px 35px var(--dark-shade);
 }
 
 form {
 display: flex;
 flex-direction: column;
+justify-content: center;
 }
 
-form > input {
+form label input {
   margin: 10px;
+  align-self: center;
 }
 
 form button {
   width: 100px;
 }
 
-form span {
-  padding: 10px;
-}
-
 .question-text {
   align-self: center;
+  color: var(--primary)
 }
 
 .question-count {
@@ -119,8 +135,11 @@ form span {
   width: 30%;
   margin: 40px auto;
   padding: 20px;
-  border: 1px solid black;
-  border-radius: 5px;
+  border-top: 1px solid var(--primary);
+  border-left: 1px solid var(--primary);
+  border-right: 5px solid var(--primary);
+  border-bottom: 10px solid var(--primary);
+  border-radius: 10px;
 }
 
 .correct {
@@ -145,16 +164,19 @@ form span {
 }
 
 .next-btn {
-  background-color: var(--dark);
+  background-color: var(--primary);
   text-align: center;
   color: var(--white);
+  align-self: center;
+  margin: 0 auto;
   padding: 10px;
   font-size: 20px;
+  text-transform: uppercase;
   cursor: pointer;
 }
 
 .submit-button {
-  background-color: var(--dark);
+  background-color: var(--primary);
   text-align: center;
   color: var(--white);
   margin-top: 10px;

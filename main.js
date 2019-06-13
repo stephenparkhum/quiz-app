@@ -18,14 +18,19 @@ let questionNum = 0;
 
 function startPage() {
   $("main").append(
-    '<div class="question"><p class="question-text"></p><p class="question-count"></p></div>'
+    '<div class="question"></div>'
   );
+  $('.question').append('<p class="question-text"></p><p class="question-count"></p>');
   $("main").append(`<div class="new-quiz">
   <button>Start Quiz</button>
 </div>`);
   $(".question p:first").text(
     `Test your music knowledge with this interactive quiz!`
   );
+}
+
+function quizInit() {
+  startPage();
 }
 
 /* 
@@ -47,7 +52,7 @@ question() will display each question, as well as the options
 Within each question there will be a display of which question (out of 10) it is.
 */
 function question(num) {
-  $(".question-text").text(`${questions[num].question}`);
+  $("p[class='question-text']").text(`${questions[num].question}`);
   questionCount(num);
   console.log('question() is running');
 }
@@ -99,21 +104,25 @@ function questionIncrement(num) {
 }
 
 // BUTTONS
+const buttonsMaster = (num) => {
+  nextBtn();
+  submitBtn();
+  tryAgain(num);
+};
 
 function nextBtn() { 
   let questionState = 1;
   $(document).on("click", ".next-btn", () => {
-    if (questionState != 9) {
+    if (questionState != 10) {
       questionIncrement(questionState);
+      questionState++;
       console.log(questionState);
     } else {
-      questionIncrement(questionState);
-      $('.next-btn').text('Complete Quiz').addClass('complete-quiz ');
+      $('form .next-btn').removeClass('next-btn');
+      $('button').text('Complete Quiz').addClass('complete-quiz');
+      questionState = 0;
       resultsPage(userScore);
-
     }
-    questionState++;
-    
   });
 }
 
@@ -122,6 +131,19 @@ function submitBtn() {
     event.preventDefault();
     console.log('submitBtn() is running');
   });
+}
+
+
+function tryAgain(num) {
+  $(document).on('click', '.js-try-again', () => {
+    $('.question').find('h4').remove();
+    num = 0;
+    resetQuiz(num);
+  });
+}
+
+function resetQuiz(num) {
+    newQuiz(num);
 }
 
 // RESULTS
@@ -152,11 +174,10 @@ function resultsPage(results) {
     } else {
       $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10. Better luck next time!</h4>`);
     }
-    
     $('.options').remove();
     $('.question-count').remove();
     $('.next-btn').remove();
-    $('.new-quiz').html('<button>Try Again</button>');
+    $('.new-quiz').append('<button class="js-try-again">Try Again</button>');
   });
 }
 
@@ -167,12 +188,9 @@ function resultsPage(results) {
 runQuiz() will include all of the other needed functions to run
 */
 function runQuiz(num) {
-  // pgLayout();
-  startPage();
-  newQuiz(num);
-  nextBtn();
-  submitBtn();
-  // resultsPage();
+  quizInit();
+  resetQuiz(num);
+  buttonsMaster(num);
 }
 
 runQuiz(questionNum);
