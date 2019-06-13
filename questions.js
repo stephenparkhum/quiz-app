@@ -1,7 +1,7 @@
 let questions = [
   {
     q_id: 1,
-    question: "What is the name of the guitarist of Guns and Roses?",
+    question: "What is the name of the guitarist of Guns N' Roses?",
     options: [
       { option: "Jimi Hendrix", answer: false },
       { option: "Jimmy Page", answer: false },

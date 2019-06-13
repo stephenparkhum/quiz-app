@@ -13,7 +13,7 @@
 
 
 // USERS SCORES
-let userScore = [];
+let userScore = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let questionNum = 0;
 
 function startPage() {
@@ -81,10 +81,14 @@ function formInit(num) {
 function newOptions(num) {
   let labelsAndInputs;
     for (let i = 0; i < 4; i++) {
-      labelsAndInputs = `<label><input type="radio" name="option" id="${questions[num].q_id}" value="${questions[num].options[i].option}"/>${questions[num].options[i].option}</label>`;
+      labelsAndInputs = `<input type="button" name="option" id="${questions[num].q_id}" value="${questions[num].options[i].option}" required/>`;
       $('form').append(labelsAndInputs);
   }
   $('form').append(`<button class="submit-button">Submit</button>`); 
+}
+
+function optionValidate() {
+
 }
 
 function removeOptions() {
@@ -128,7 +132,9 @@ function nextBtn() {
 
 function submitBtn() {
   $(document).on("click", ".submit-button", function(event) {
+    let userAnswer = 
     event.preventDefault();
+    console.log($('form input').attr('value'));
     console.log('submitBtn() is running');
   });
 }
@@ -145,6 +151,12 @@ function tryAgain(num) {
 function resetQuiz(num) {
     newQuiz(num);
 }
+
+
+// FORM VALIDATION
+
+
+
 
 // RESULTS
 /* 
@@ -166,12 +178,15 @@ function calcResults(results) {
 function resultsPage(results) {
   $(document).on('click', '.complete-quiz', () => {
     let userResults = calcResults(results);
-    $('.question p:first').text('Congratulations! You have finished the quiz!');
+    
     if (userResults <= 9 && userResults >=6 ) {
+      $('.question p:first').text('Congratulations!');
       $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10! Great job!</h4>`);
     } else if (userResults == 10) {
-      $('.question').append(`<h4>You got a perfect score! <span>${calcResults(results)}</span> out of 10! Magnificent!</h4>`);
+      $('.question p:first').text('Magnificent! You have finished the quiz!');
+      $('.question').append(`<h4>You got a perfect score! <span>${calcResults(results)}</span> out of 10!</h4>`);
     } else {
+      $('.question p:first').text('Bummer! Better luck next time!');
       $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10. Better luck next time!</h4>`);
     }
     $('.options').remove();

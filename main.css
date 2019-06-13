@@ -110,7 +110,27 @@ justify-content: center;
 
 form label input {
   margin: 10px;
-  align-self: center;
+}
+
+input[type="button"] {
+  background-color: var(--white);
+  font-size: 15px;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  margin: 5px 0;
+  border: 1px solid var(--dark)
+}
+
+input[type="button"]:hover {
+  background-color: var(--dark);
+  color: white;
+
+}
+input[type="button"]:active {
+  background-color: var(--dark);
+  color: white;
+  transform: translateX(10px);
 }
 
 form button {
@@ -135,10 +155,10 @@ form button {
   width: 30%;
   margin: 40px auto;
   padding: 20px;
-  border-top: 1px solid var(--primary);
-  border-left: 1px solid var(--primary);
-  border-right: 5px solid var(--primary);
-  border-bottom: 10px solid var(--primary);
+  border-top: 1px solid var(--dark-shade);
+  border-left: 1px solid var(--dark-shade);
+  border-right: 5px solid var(--dark-shade);
+  border-bottom: 5px solid var(--dark-shade);
   border-radius: 10px;
 }
 
@@ -183,6 +203,7 @@ form button {
   padding: 10px;
   font-size: 15px;
   cursor: pointer;
+  width: 100%;
 }
 
 /* COMPLETION */
