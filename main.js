@@ -54,7 +54,7 @@ Within each question there will be a display of which question (out of 10) it is
 function question(num) {
   $("p[class='question-text']").text(`${questions[num].question}`);
   questionCount(num);
-  $('main').append('<div id="myBar"></div>');
+  $('main').append('<div id="statusBar"></div>');
   move();
   console.log('question() is running');
 }
@@ -92,14 +92,14 @@ function newOptions(num) {
 function optionValidate(num) {
   $(document).on('click', 'input', function(event) {
     let selection = event.target.getAttribute('value');
-    if (selection === questions[num].answer && $('#myBar').attr('width') != 0) {
+    if (selection === questions[num].answer && $('#statusBar').attr('width') != 0) {
       console.log('this is correct');
       $(event.target).removeClass('option-empty');
       $(event.target).addClass('correct');
-      $('#myBar').remove();
+      $('#statusBar').remove();
       correctScore();
     } else if (selection != questions[num].answer){
-      $('#myBar').remove();
+      $('#statusBar').remove();
       wrongScore();
       $(event.target).removeClass('option-empty');
       $(event.target).addClass('incorrect');
@@ -109,6 +109,11 @@ function optionValidate(num) {
   });
 }
 
+
+
+/* 
+The User's Score will be stored as a '1' for correct, and '0' for incorrect. 
+*/
 function correctScore(num) {
   userScore.push(1);
 }
@@ -135,7 +140,7 @@ function questionIncrement(num) {
 
 // STATUS / TIMER BAR
 function move() {
-  var elem = document.getElementById("myBar"); 
+  var elem = document.getElementById("statusBar"); 
   var width = 100;
   var id = setInterval(frame, 100);
   function frame() {
@@ -149,7 +154,7 @@ function move() {
 }
 
 function addTimer() {
-  $('main').append('<div id="myBar"></div>');
+  $('main').append('<div id="statusBar"></div>');
 }
 
 // BUTTONS
@@ -165,8 +170,8 @@ function nextBtn(num) {
       questionIncrement(num);
       num++;
       $('.next-btn').hide();
-      $('#myBar').remove();
-      $('main').append('<div id="myBar"></div>');
+      $('#statusBar').remove();
+      $('main').append('<div id="statusBar"></div>');
       move();
       console.log(num);
     } else {
@@ -178,20 +183,11 @@ function nextBtn(num) {
   });
 }
 
-// function submitBtn() {
-//   $(document).on("click", ".submit-button", function(event) {
-//     event.preventDefault();
-//     console.log($('form input').attr('value'));
-//     console.log('submitBtn() is running');
-//   });
-  
-// }
-
 
 function tryAgain(num) {
   $(document).on('click', '.js-try-again', () => {
     $('.question').find('h4').remove();
-    num = 0;
+    userScore = [];
     resetQuiz(num);
   });
 }
