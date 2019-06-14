@@ -127,10 +127,16 @@ input[type="button"]:hover {
   color: white;
 
 }
-input[type="button"]:active {
+/* input[type="button"]:focus {
   background-color: var(--dark);
   color: white;
-  transform: translateX(10px);
+
+} */
+
+.op-selected {
+  background-color: var(--dark);
+  color: white; 
+  font-weight: 500;
 }
 
 form button {
@@ -162,12 +168,14 @@ form button {
   border-radius: 10px;
 }
 
-.correct {
+input[type="button"].correct {
   background-color: green;
   color: white;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
-.incorrect {
+input[type="button"].incorrect {
   background-color: red;
   color: white;
 }
@@ -193,6 +201,9 @@ form button {
   font-size: 20px;
   text-transform: uppercase;
   cursor: pointer;
+  position: fixed; 
+  right: 300px;
+  bottom: 100px;
 }
 
 .submit-button {
@@ -224,3 +235,19 @@ form button {
   font-size: 20px;
   cursor: pointer;
 }
+
+/* TEST CODE ** DELETE LATER ***/
+
+#myProgress {
+  width: 100%;
+  background-color: grey;
+}
+
+#myBar {
+  width: 0%;
+  height: 10px;
+  background-color: green;
+}
+
+
+

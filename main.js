@@ -13,8 +13,8 @@
 
 
 // USERS SCORES
-let userScore = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-let questionNum = 0;
+let userScore = [];
+let questionNum = userScore.length;
 
 function startPage() {
   $("main").append(
@@ -54,6 +54,8 @@ Within each question there will be a display of which question (out of 10) it is
 function question(num) {
   $("p[class='question-text']").text(`${questions[num].question}`);
   questionCount(num);
+  $('main').append('<div id="myBar"></div>');
+  move();
   console.log('question() is running');
 }
 
@@ -64,31 +66,54 @@ function questionCount(num) {
   $(".question-count").text(`Question ${num + 1} of 10`);
 }
 
-
 /* 
 optionForm() will display the set of options the user has to pick from
 */
 function formInit(num) {
   let initialForm = `<div class="options">
-  <form action="" class="option-form">
+  <form action="" id="option-form">
   </form>
 </div>
-<button class="next-btn">Next</button></a>`;
+<button class="next-btn">Next</button>`;
   $("main").append(initialForm);
+  $('.next-btn').hide();
   newOptions(num);
 }
 
 function newOptions(num) {
   let labelsAndInputs;
     for (let i = 0; i < 4; i++) {
-      labelsAndInputs = `<input type="button" name="option" id="${questions[num].q_id}" value="${questions[num].options[i].option}" required/>`;
+      labelsAndInputs = `<input type="button" name="option" id="${i + 1}" value="${questions[num].options[i].option}" class="option-empty" required/>`;
       $('form').append(labelsAndInputs);
   }
-  $('form').append(`<button class="submit-button">Submit</button>`); 
+  // $('form').append(`<button class="submit-button">Submit</button>`); 
 }
 
-function optionValidate() {
+function optionValidate(num) {
+  $(document).on('click', 'input', function(event) {
+    let selection = event.target.getAttribute('value');
+    if (selection === questions[num].answer && $('#myBar').attr('width') != 0) {
+      console.log('this is correct');
+      $(event.target).removeClass('option-empty');
+      $(event.target).addClass('correct');
+      $('#myBar').remove();
+      correctScore();
+    } else if (selection != questions[num].answer){
+      $('#myBar').remove();
+      wrongScore();
+      $(event.target).removeClass('option-empty');
+      $(event.target).addClass('incorrect');
+      console.log('this is wrong');
+    }
+    $('.next-btn').show();
+  });
+}
 
+function correctScore(num) {
+  userScore.push(1);
+}
+function wrongScore(num) {
+  userScore.push(0);
 }
 
 function removeOptions() {
@@ -107,37 +132,60 @@ function questionIncrement(num) {
       console.log('question inc. is working');
 }
 
+
+// STATUS / TIMER BAR
+function move() {
+  var elem = document.getElementById("myBar"); 
+  var width = 100;
+  var id = setInterval(frame, 100);
+  function frame() {
+    if (width <= 0) {
+      clearInterval(id);
+    } else {
+      width--; 
+      elem.style.width = width + '%'; 
+    }
+  }
+}
+
+function addTimer() {
+  $('main').append('<div id="myBar"></div>');
+}
+
 // BUTTONS
 const buttonsMaster = (num) => {
-  nextBtn();
-  submitBtn();
+  nextBtn(num);
+  // submitBtn();
   tryAgain(num);
 };
 
-function nextBtn() { 
-  let questionState = 1;
+function nextBtn(num) { 
   $(document).on("click", ".next-btn", () => {
-    if (questionState != 10) {
-      questionIncrement(questionState);
-      questionState++;
-      console.log(questionState);
+    if (num != 10) {
+      questionIncrement(num);
+      num++;
+      $('.next-btn').hide();
+      $('#myBar').remove();
+      $('main').append('<div id="myBar"></div>');
+      move();
+      console.log(num);
     } else {
       $('form .next-btn').removeClass('next-btn');
       $('button').text('Complete Quiz').addClass('complete-quiz');
-      questionState = 0;
+      num = 0;
       resultsPage(userScore);
     }
   });
 }
 
-function submitBtn() {
-  $(document).on("click", ".submit-button", function(event) {
-    let userAnswer = 
-    event.preventDefault();
-    console.log($('form input').attr('value'));
-    console.log('submitBtn() is running');
-  });
-}
+// function submitBtn() {
+//   $(document).on("click", ".submit-button", function(event) {
+//     event.preventDefault();
+//     console.log($('form input').attr('value'));
+//     console.log('submitBtn() is running');
+//   });
+  
+// }
 
 
 function tryAgain(num) {
@@ -150,6 +198,7 @@ function tryAgain(num) {
 
 function resetQuiz(num) {
     newQuiz(num);
+    optionValidate(num);
 }
 
 
@@ -202,10 +251,10 @@ function resultsPage(results) {
 /* 
 runQuiz() will include all of the other needed functions to run
 */
-function runQuiz(num) {
+function runQuiz() {
   quizInit();
-  resetQuiz(num);
-  buttonsMaster(num);
+  resetQuiz(questionNum);
+  buttonsMaster(questionNum);
 }
 
 runQuiz(questionNum);
