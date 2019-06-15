@@ -10,7 +10,7 @@
 
   /* CORRECT / INCORRECT COLORS */
   --incorrect: #D95252;
-  --correct: var(--secondary);
+  --correct: #22524F;
 }
 
 /* GLOBAL STYLES */
@@ -173,7 +173,7 @@ form button {
 }
 
 input[type="button"].correct {
-  background-color: var(--primary);
+  background-color: var(--correct);
   color: var(--white);
   text-transform: uppercase;
   font-weight: 500;
