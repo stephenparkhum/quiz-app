@@ -4,11 +4,12 @@
   --dark-shade: #25027238;
   --primary: #2A3A59;
   --secondary: #A4BDBF;
+  --light: #C5D9D9;
   --white: #FFFFFF;
   --b-l: 1px solid black;
 
   /* CORRECT / INCORRECT COLORS */
-  --incorrect: #CC4036;
+  --incorrect: #D95252;
   --correct: var(--secondary);
 }
 
@@ -35,27 +36,37 @@ main {
 }
 
 header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   top: 0;
   width: 100%;
   font-weight: 100;
-  align-self: flex-start; 
   padding: 10px 15px;
   background-color: var(--primary);
   color: var(--white);
+  box-shadow: 1px 1px 10px var(--primary);
+  border-bottom: 10px solid var(--incorrect);
 }
 
 header h1 {
+  align-self: center;
   font-weight: 100;
 }
 
 header .new-link {
-  color: var(--dark);
+  color: var(--white);
   align-self: center;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 20px;
   text-decoration: none;
-  padding: 10px;
-  background-color: var(--secondary);
+  padding: 15px;
+  margin-left: 30px;
+  background-color: var(--incorrect);
+}
+
+.query-text {
+  color: var(--incorrect);
 }
 
 /* STARTING PAGE */
@@ -99,7 +110,7 @@ div.question {
   border-bottom: 15px solid var(--primary);
   border-radius: 5px;
   text-align: center;
-  box-shadow: 5px 10px 35px var(--primary);
+  box-shadow: 0 2px 10px var(--primary);
 }
 
 form {
@@ -156,16 +167,14 @@ form button {
   width: 30%;
   margin: 40px auto;
   padding: 20px;
-  border-top: 1px solid var(--dark-shade);
-  border-left: 1px solid var(--dark-shade);
-  border-right: 5px solid var(--dark-shade);
-  border-bottom: 5px solid var(--dark-shade);
+  border: 1px solid var(--primary);
   border-radius: 10px;
+  box-shadow: 1px 5px 10px var(--primary);
 }
 
 input[type="button"].correct {
-  background-color: var(--correct);
-  color: var(--primary);
+  background-color: var(--primary);
+  color: var(--white);
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -241,7 +250,7 @@ input[type="button"].incorrect {
 #statusBar {
   width: 0%;
   height: 10px;
-  background-color:var(--correct);
+  background-color:var(--primary);
 }
 
 
