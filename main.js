@@ -52,6 +52,7 @@ question() will display each question, as well as the options
 Within each question there will be a display of which question (out of 10) it is.
 */
 function question(num) {
+  num = userScore.length;
   $("p[class='question-text']").text(`${questions[num].question}`);
   questionCount(num);
   $('main').append('<div id="statusBar"></div>');
@@ -81,43 +82,56 @@ function formInit(num) {
 }
 
 function newOptions(num) {
+  num = userScore.length;
   let labelsAndInputs;
     for (let i = 0; i < 4; i++) {
       labelsAndInputs = `<input type="button" name="option" id="${i + 1}" value="${questions[num].options[i].option}" class="option-empty" required/>`;
       $('form').append(labelsAndInputs);
   }
-  // $('form').append(`<button class="submit-button">Submit</button>`); 
 }
 
 function optionValidate(num) {
+  num = 0;
   $(document).on('click', 'input', function(event) {
     let selection = event.target.getAttribute('value');
-    if (selection === questions[num].answer && $('#statusBar').attr('width') != 0) {
+    let answer = questions[num]['answer'];
+    console.log(selection.type);
+    if (selection == answer) {
       console.log('this is correct');
       $(event.target).removeClass('option-empty');
       $(event.target).addClass('correct');
       $('#statusBar').remove();
       correctScore();
-    } else if (selection != questions[num].answer){
+      $('.next-btn').show();
+      num++;
+    } else if (num == 10) {
+      $('.next-btn').show();
+      $('form .next-btn').removeClass('next-btn');
+      $('button').text('Complete Quiz').addClass('complete-quiz');
+      resultsPage(userScore);
+    } else {
       $('#statusBar').remove();
       wrongScore();
       $(event.target).removeClass('option-empty');
       $(event.target).addClass('incorrect');
       console.log('this is wrong');
+      num++;
+      $('.next-btn').show();
     }
-    $('.next-btn').show();
+    
   });
 }
+
 
 
 
 /* 
 The User's Score will be stored as a '1' for correct, and '0' for incorrect. 
 */
-function correctScore(num) {
+function correctScore() {
   userScore.push(1);
 }
-function wrongScore(num) {
+function wrongScore() {
   userScore.push(0);
 }
 
@@ -166,7 +180,7 @@ const buttonsMaster = (num) => {
 
 function nextBtn(num) { 
   $(document).on("click", ".next-btn", () => {
-    if (num != 10) {
+    if (num <= 9) {
       questionIncrement(num);
       num++;
       $('.next-btn').hide();
@@ -174,13 +188,12 @@ function nextBtn(num) {
       $('main').append('<div id="statusBar"></div>');
       move();
       console.log(num);
-    } else {
-      $('form .next-btn').removeClass('next-btn');
-      $('button').text('Complete Quiz').addClass('complete-quiz');
-      num = 0;
-      resultsPage(userScore);
     }
   });
+}
+
+function lastQuestion() {
+  
 }
 
 
@@ -247,10 +260,10 @@ function resultsPage(results) {
 /* 
 runQuiz() will include all of the other needed functions to run
 */
-function runQuiz() {
+function runQuiz(num) {
   quizInit();
-  resetQuiz(questionNum);
-  buttonsMaster(questionNum);
+  resetQuiz(num);
+  buttonsMaster(num);
 }
 
-runQuiz(questionNum);
+runQuiz(userScore.length);

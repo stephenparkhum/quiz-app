@@ -2,13 +2,13 @@
   /* MAIN COLORS */
   --dark: #250272;
   --dark-shade: #25027238;
-  --primary: #694DA5;
-  --secondary: #B5AFD8;
-  --white: #F2F2F2;
+  --primary: #2A3A59;
+  --secondary: #A4BDBF;
+  --white: #FFFFFF;
   --b-l: 1px solid black;
 
   /* CORRECT / INCORRECT COLORS */
-  --incorrect: #ff3d00;
+  --incorrect: #CC4036;
   --correct: var(--secondary);
 }
 
@@ -41,7 +41,7 @@ header {
   align-self: flex-start; 
   padding: 10px 15px;
   background-color: var(--primary);
-  color: white;
+  color: var(--white);
 }
 
 header h1 {
@@ -99,7 +99,7 @@ div.question {
   border-bottom: 15px solid var(--primary);
   border-radius: 5px;
   text-align: center;
-  box-shadow: 5px 10px 35px var(--dark-shade);
+  box-shadow: 5px 10px 35px var(--primary);
 }
 
 form {
@@ -123,19 +123,14 @@ input[type="button"] {
 }
 
 input[type="button"]:hover {
-  background-color: var(--dark);
-  color: white;
+  background-color: var(--primary);
+  color: var(--white);
 
 }
-/* input[type="button"]:focus {
-  background-color: var(--dark);
-  color: white;
-
-} */
 
 .op-selected {
   background-color: var(--dark);
-  color: white; 
+  color: var(--white); 
   font-weight: 500;
 }
 
@@ -154,7 +149,7 @@ form button {
 }
 
 .question-count span {
-  color: green;
+  color: var(--correct);
 }
 
 .options {
@@ -169,15 +164,15 @@ form button {
 }
 
 input[type="button"].correct {
-  background-color: green;
-  color: white;
+  background-color: var(--correct);
+  color: var(--primary);
   text-transform: uppercase;
   font-weight: 500;
 }
 
 input[type="button"].incorrect {
-  background-color: red;
-  color: white;
+  background-color: var(--incorrect);
+  color: var(--white);
 }
 
 .q-num {
@@ -220,7 +215,7 @@ input[type="button"].incorrect {
 /* COMPLETION */
 .complete-quiz {
   background-color: green;
-  color: white; 
+  color: var(--white); 
 
 }
 .finish {
@@ -231,7 +226,7 @@ input[type="button"].incorrect {
   text-align: center;
   padding: 20px;
   background-color: black;
-  color: white;
+  color: var(--white);
   font-size: 20px;
   cursor: pointer;
 }
@@ -240,13 +235,13 @@ input[type="button"].incorrect {
 
 #myProgress {
   width: 100%;
-  background-color: grey;
+  background-color: var(--white);
 }
 
 #statusBar {
   width: 0%;
   height: 10px;
-  background-color: green;
+  background-color:var(--correct);
 }
 
 
