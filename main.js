@@ -56,7 +56,6 @@ function question(num) {
   if (num <= 9) {
     $("p[class='question-text']").text(`${questions[num].question}`);
     questionCount(num);
-    console.log('question() is running');
   }
 
 }
@@ -101,7 +100,6 @@ function optionValidate(num) {
     if (selection == answer) {
       $(event.target).removeClass('option-empty');
       $(event.target).addClass('correct');
-      $('#statusBar').remove();
       correctScore();
       if (num <= 8) {
         $('.next-btn').show();
@@ -112,7 +110,6 @@ function optionValidate(num) {
         $('main button').text('Complete Quiz').addClass('complete-quiz');
       }
     } else {
-      $('#statusBar').remove();
       wrongScore();
       $(event.target).removeClass('option-empty');
       $(event.target).addClass('incorrect');
@@ -122,9 +119,6 @@ function optionValidate(num) {
 
   });
 }
-
-
-
 
 /* 
 The User's Score will be stored as a '1' for correct, and '0' for incorrect. 
@@ -157,7 +151,7 @@ function questionIncrement(num) {
 const buttonsMaster = (num) => {
   nextBtn(num);
   // submitBtn();
-  tryAgain(num);
+  // tryAgain(num);
 };
 
 function nextBtn(num) {
@@ -173,18 +167,14 @@ function nextBtn(num) {
   });
 }
 
-function lastQuestion() {
 
-}
-
-
-function tryAgain(num) {
-  $(document).on('click', '.js-try-again', () => {
-    $('.question').find('h4').remove();
-    userScore = [];
-    resetQuiz(num);
-  });
-}
+// function tryAgain(num) {
+//   $(document).on('click', '.js-try-again', () => {
+//     $('.question').find('h4').remove();
+//     userScore = [];
+//     resetQuiz(num);
+//   });
+// }
 
 function resetQuiz(num) {
   newQuiz(num);

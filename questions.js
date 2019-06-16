@@ -34,7 +34,7 @@ let questions = [
   },
   {
     q_id: 4,
-    question:"What is the name of the guitarist is famous for the guitar track that gained him notoriety for the song Eruption?",
+    question:"What is the first name of the guitarst in Van Halen?",
     options: [
       { option: "Ace Frehley"},
       { option: "Eddie Van Halen"},

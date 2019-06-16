@@ -63,10 +63,7 @@ header .new-link {
   padding: 15px;
   margin-left: 30px;
   background-color: var(--incorrect);
-}
-
-.query-text {
-  color: var(--incorrect);
+  border-radius: 10px;
 }
 
 /* STARTING PAGE */
@@ -127,10 +124,11 @@ input[type="button"] {
   background-color: var(--white);
   font-size: 15px;
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   cursor: pointer;
   margin: 5px 0;
-  border: 1px solid var(--dark)
+  border: 1px solid var(--primary);
+  border-radius: 10px;
 }
 
 input[type="button"]:hover {
@@ -164,7 +162,7 @@ form button {
 }
 
 .options {
-  width: 30%;
+  width: 35%;
   margin: 40px auto;
   padding: 20px;
   border: 1px solid var(--primary);
@@ -210,17 +208,6 @@ input[type="button"].incorrect {
   bottom: 100px;
 }
 
-.submit-button {
-  background-color: var(--primary);
-  text-align: center;
-  color: var(--white);
-  margin-top: 10px;
-  padding: 10px;
-  font-size: 15px;
-  cursor: pointer;
-  width: 100%;
-}
-
 /* COMPLETION */
 .complete-quiz {
   background-color: green;
@@ -255,3 +242,201 @@ input[type="button"].incorrect {
 
 
 
+/* MOBILE */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    top: 0;
+    width: 100%;
+    font-weight: 100;
+    padding: 10px 15px;
+    background-color: var(--primary);
+    color: var(--white);
+    box-shadow: 1px 1px 10px var(--primary);
+    border-bottom: 10px solid var(--incorrect);
+  }
+  
+  header h1 {
+    /* align-self: center; */
+    font-weight: 100;
+  }
+  
+  header .new-link {
+    color: var(--white);
+    align-self: center;
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 15px;
+    margin-left: 30px;
+    background-color: var(--incorrect);
+    border-radius: 10px;
+  }
+
+
+  .start {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .new-quiz {
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .new-quiz button {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: 100;
+  }
+
+  /* QUESTION PAGE */
+div.question {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 150px;
+}
+
+.question {
+  font-size: 20px;
+  width: 70%;
+  margin: 20px auto;
+  padding: 10px;
+  border-top: 1px solid var(--primary);
+  border-left: 1px solid var(--primary);
+  border-right: 1px solid var(--primary);
+  border-bottom: 15px solid var(--primary);
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 2px 10px var(--primary);
+}
+
+form {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+form label input {
+  margin: 5px;
+}
+
+input[type="button"] {
+  background-color: var(--white);
+  font-size: 15px;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  margin: 5px 0;
+  border: 1px solid var(--dark)
+}
+
+input[type="button"]:hover {
+  background-color: var(--primary);
+  color: var(--white);
+
+}
+
+.op-selected {
+  background-color: var(--dark);
+  color: var(--white); 
+  font-weight: 500;
+}
+
+form button {
+  width: 100px;
+}
+
+.question-text {
+  align-self: center;
+  color: var(--primary)
+}
+
+.question-count {
+  align-self: center;
+  font-size: 15px;
+}
+
+.question-count span {
+  color: var(--correct);
+}
+
+.options {
+  width: 65%;
+  margin: 25px auto;
+  padding: 20px;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  box-shadow: 1px 5px 10px var(--primary);
+}
+
+input[type="button"].correct {
+  background-color: var(--correct);
+  color: var(--white);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+input[type="button"].incorrect {
+  background-color: var(--incorrect);
+  color: var(--white);
+}
+
+.q-num {
+  font-size: 15px;
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.score {
+  text-align: center;
+}
+
+.next-btn {
+  background-color: var(--primary);
+  text-align: center;
+  color: var(--white);
+  align-self: center;
+  margin: 0 auto;
+  padding: 10px;
+  font-size: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: fixed; 
+  right: 300px;
+  bottom: 100px;
+}
+
+footer {
+  background-color: var(--primary);
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-left: 27px;
+
+}
+
+/* footer h6 {
+  font-weight: 100;
+  font-size: 12px;
+} */
+
+
+  }
