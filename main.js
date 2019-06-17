@@ -150,8 +150,6 @@ function questionIncrement(num) {
 // BUTTONS
 const buttonsMaster = (num) => {
   nextBtn(num);
-  // submitBtn();
-  // tryAgain(num);
 };
 
 function nextBtn(num) {
