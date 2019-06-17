@@ -100,6 +100,7 @@ function optionValidate(num) {
     if (selection == answer) {
       $(event.target).removeClass('option-empty');
       $(event.target).addClass('correct');
+      $(event.target).attr('checked', "checked");
       correctScore();
       if (num <= 8) {
         $('.next-btn').show();
