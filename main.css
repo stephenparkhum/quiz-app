@@ -128,7 +128,7 @@ input[type="button"] {
   width: 80%;
   padding: 15px;
   cursor: pointer;
-  margin: 10px auto 10px auto ;
+  margin: 0 auto;
   border: 1px solid var(--primary);
   border-radius: 10px;
 }
