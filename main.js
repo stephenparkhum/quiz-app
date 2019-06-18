@@ -11,11 +11,6 @@
 5. New Quiz button, which will restart the quiz
 */
 
-
-// USERS SCORES
-// let userScore = [];
-// let questionNum = userScore.length;
-
 class Quiz {
   constructor(questions) {
     this.userScore = [];
@@ -65,33 +60,6 @@ class Quiz {
     }
   }
 
-  optionValidate() {
-    $(document).on('click', 'input', function (event) {
-      let selection = event.target.getAttribute('value');
-      if (selection == this.questions[0].answer) {
-        $(event.target).removeClass('option-empty');
-        $(event.target).addClass('correct');
-        $(event.target).attr('checked', "checked");
-        this.correctScore();
-        if (this.questionNum <= 9) {
-          $('.next-btn').show();
-          this.questionNum++;
-        } else {
-          $('.next-btn').show();
-          $('form .next-btn').removeClass('next-btn');
-          $('main button').text('Complete Quiz').addClass('complete-quiz');
-        }
-      } else {
-        this.wrongScore();
-        $(event.target).removeClass('option-empty');
-        $(event.target).addClass('incorrect');
-        this.questionNum++;
-        $('.next-btn').show();
-      }
-  
-    });
-  }
-
   removeOptions() {
     let optionCount = 4;
     for (let i = 0; i < optionCount; i++) {
@@ -106,24 +74,14 @@ class Quiz {
   }
 
   // BUTTONS
-
-  // QUIZ RESULTS
-  calcResults(results) {
-    let userRightCount = 0;
-    for (let i = 0; i < results.length; i++) {
-      if (results[i] === true) {
-        userRightCount++;
-      }
-    }
-    return userRightCount;
-  }
+  
   
   correctScore() {
     this.userScore.push(true);
   }
   
   wrongScore() {
-    this.userSscore.push(false);
+    this.userScore.push(false);
   }
 
 }
@@ -151,30 +109,54 @@ function startPage() {
 }
 
 function nextBtn(num) {
-  num = num.questionNum;
   $(document).on("click", ".next-btn", () => {
-    if (num <= 9) {
-      questionIncrement(num);
-      num++;
+    if (num.questionNum <= 10) {
+      num.questionIncrement();
       $('.next-btn').hide();
-      console.log(num);
+      console.log(num.questionNum);
     } else {
       resultsPage();
     }
   });
 }
 
+function optionValidate(num) {
+  $(document).on('click', 'input', function (event) {
+    let selection = event.target.getAttribute('value');
+    if (selection == num.questions[num.questionNum - 1].answer) {
+      $(event.target).removeClass('option-empty');
+      $(event.target).addClass('correct');
+      num.correctScore();
+      if (num.questionNum < 10) {
+        $('.next-btn').show();
+        num.questionNum++;
+      } else {
+        $('.next-btn').show();
+        $('form .next-btn').removeClass('next-btn');
+        $('main button').text('Complete Quiz').addClass('complete-quiz');
+      }
+    } else {
+      num.wrongScore();
+      $(event.target).removeClass('option-empty');
+      $(event.target).addClass('incorrect');
+      num.questionNum++;
+      $('.next-btn').show();
+    }
+
+  });
+}
+
 function resultsPage(results) {
   $(document).on('click', '.complete-quiz', () => {
     let userResults = calcResults(results);
-    if (userResults <= 9 && userResults >= 6) {
-      $('.question p:first').text('Congratulations!');
+    if (userResults <= 10 && userResults >= 6) {
+      $('p .question-text').text('Congratulations!');
       $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10! Great job!</h4>`);
     } else if (userResults == 10) {
-      $('.question p:first').text('Magnificent! You have finished the quiz!');
+      $('.question-text').text('Magnificent! You got a perfect score!');
       $('.question').append(`<h4>You got a perfect score! <span>${calcResults(results)}</span> out of 10!</h4>`);
     } else {
-      $('.question p:first').text('Bummer! Better luck next time!');
+      $('.question-text').text('Bummer! Better luck next time!');
       $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10. Better luck next time!</h4>`);
     }
     $('.options').remove();
@@ -184,7 +166,15 @@ function resultsPage(results) {
   });
 }
 
-
+function calcResults(results) {
+  let userRightCount = 0;
+  for (let i = 0; i < results.length; i++) {
+    if (results[i] === true) {
+      userRightCount++;
+    } 
+  }
+  return userRightCount;
+}
 
 // RUN APP
 /* 
@@ -194,16 +184,25 @@ function newQuiz(quiz) {
   $(document).on("click", ".new-quiz", () => {
     quiz.question();
     quiz.formInit();
-    quiz.optionValidate();
+    optionValidate(quiz);
+    nextBtn(quiz);
     $(".new-quiz button").remove();
   });
 }
+
+function quizRestart(quiz) {
+  $(document).on("click", ".js-try-again", () => {
+    newQuiz(quiz);
+  });
+}
+
 
 function runQuiz() {
   startPage();
   const quizInitiate = new Quiz();
   newQuiz(quizInitiate);
   resultsPage(quizInitiate.userScore);
+  quizRestart(quizInitiate);
 }
 
 runQuiz();
