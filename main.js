@@ -25,10 +25,14 @@ class Quiz {
 
   // Questions
   question() {
-    if (this.questionNum <= 9) {
+    if (this.questionNum <= 10) {
       $("p[class='question-text']").text(`${questions[this.questionNum].question}`);
-      console.log(questionCount(this.questionNum));
+      this.questionCount();
     }
+  }
+
+  questionCount() {
+    $(".question-count").text(`Question ${this.questionNum} of 10`);
   }
 
   questionIncrement() {
@@ -53,7 +57,7 @@ class Quiz {
   newOptions() {
     let num = this.questionNum;
     let labelsAndInputs;
-    if (num <= 9) {
+    if (num <= 10) {
       for (let i = 0; i < 4; i++) {
         labelsAndInputs = `<input type="button" name="option" id="${i + 1}" value="${questions[num].options[i].option}" class="option-empty" required/>`;
         $('form').append(labelsAndInputs);
@@ -71,7 +75,7 @@ class Quiz {
         $(event.target).addClass('correct');
         $(event.target).attr('checked', "checked");
         correctScore();
-        if (num <= 8) {
+        if (num <= 9) {
           $('.next-btn').show();
           num++;
         } else {
@@ -98,7 +102,6 @@ class Quiz {
       $('form').find(".submit-button").remove();
     }
   }
-
 
   newQuiz() {
     $(document).on("click", ".new-quiz", () => {
@@ -150,42 +153,9 @@ class Quiz {
   }
 
 }
-
-
-
 function quizInit() {
   startPage();
 }
-
-/* 
-newQuiz() will show a dialog that asks if the user wants to start a new quiz
-Once clicked, it'll show the question + answer. 
-Ultimately this will 'hide; the new quiz button, as well as 'show' the questions
-*/
-
-
-
-/* 
-question() will display each question, as well as the options
-Within each question there will be a display of which question (out of 10) it is.
-*/
-
-/* 
-questionCount() will display which question (out of 10) it is.
-*/
-
-/* 
-optionForm() will display the set of options the user has to pick from
-*/
-
-/* 
-The User's Score will be stored as a '1' for correct, and '0' for incorrect. 
-*/
-
-
-
-
-
 
 
 // RESULTS
