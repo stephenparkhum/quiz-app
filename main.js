@@ -20,13 +20,13 @@ class Quiz {
   constructor(questions) {
     this.userScore = [];
     this.questionNum = 1;
-    this.questions = questions;
+    this.questions = questionsList;
   }
 
   // Questions
   question() {
     if (this.questionNum <= 10) {
-      $("p[class='question-text']").text(`${questions[this.questionNum - 1].question}`);
+      $("p[class='question-text']").text(`${this.questions[this.questionNum - 1].question}`);
       this.questionCount();
     }
   }
@@ -59,36 +59,33 @@ class Quiz {
     let labelsAndInputs;
     if (num <= 10) {
       for (let i = 0; i < 4; i++) {
-        labelsAndInputs = `<input type="button" name="option" id="${i + 1}" value="${questions[num].options[i].option}" class="option-empty" required/>`;
+        labelsAndInputs = `<input type="button" name="option" id="${i + 1}" value="${this.questions[num].options[i].option}" class="option-empty" required/>`;
         $('form').append(labelsAndInputs);
       }
     }
   }
 
   optionValidate() {
-    let num = this.questionNum;
     $(document).on('click', 'input', function (event) {
       let selection = event.target.getAttribute('value');
-      let answer = questions[num]['answer'];
-      if (selection == answer) {
-        debugger;
+      if (selection == this.questions[0].answer) {
         $(event.target).removeClass('option-empty');
         $(event.target).addClass('correct');
         $(event.target).attr('checked', "checked");
-        correctScore();
-        if (num <= 9) {
+        this.correctScore();
+        if (this.questionNum <= 9) {
           $('.next-btn').show();
-          num++;
+          this.questionNum++;
         } else {
           $('.next-btn').show();
           $('form .next-btn').removeClass('next-btn');
           $('main button').text('Complete Quiz').addClass('complete-quiz');
         }
       } else {
-        wrongScore();
+        this.wrongScore();
         $(event.target).removeClass('option-empty');
         $(event.target).addClass('incorrect');
-        num++;
+        this.questionNum++;
         $('.next-btn').show();
       }
   
@@ -109,22 +106,6 @@ class Quiz {
   }
 
   // BUTTONS
-  nextBtn(num) {
-    $(document).on("click", ".next-btn", () => {
-      if (num <= 9) {
-        questionIncrement(num);
-        num++;
-        $('.next-btn').hide();
-        console.log(num);
-      } else {
-        resultsPage();
-      }
-    });
-  }
-
-  buttonsMaster(num) {
-    nextBtn(num);
-  }
 
   // QUIZ RESULTS
   calcResults(results) {
@@ -136,13 +117,13 @@ class Quiz {
     }
     return userRightCount;
   }
-
+  
   correctScore() {
     this.userScore.push(true);
   }
   
   wrongScore() {
-    this.userScore.push(false);
+    this.userSscore.push(false);
   }
 
 }
@@ -169,11 +150,23 @@ function startPage() {
   );
 }
 
+function nextBtn(num) {
+  num = num.questionNum;
+  $(document).on("click", ".next-btn", () => {
+    if (num <= 9) {
+      questionIncrement(num);
+      num++;
+      $('.next-btn').hide();
+      console.log(num);
+    } else {
+      resultsPage();
+    }
+  });
+}
 
 function resultsPage(results) {
   $(document).on('click', '.complete-quiz', () => {
     let userResults = calcResults(results);
-
     if (userResults <= 9 && userResults >= 6) {
       $('.question p:first').text('Congratulations!');
       $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10! Great job!</h4>`);
@@ -210,7 +203,7 @@ function runQuiz() {
   startPage();
   const quizInitiate = new Quiz();
   newQuiz(quizInitiate);
-  resultsPage();
+  resultsPage(quizInitiate.userScore);
 }
 
 runQuiz();
