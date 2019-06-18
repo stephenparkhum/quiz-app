@@ -26,7 +26,7 @@ class Quiz {
   // Questions
   question() {
     if (this.questionNum <= 10) {
-      $("p[class='question-text']").text(`${questions[this.questionNum].question}`);
+      $("p[class='question-text']").text(`${questions[this.questionNum - 1].question}`);
       this.questionCount();
     }
   }
@@ -55,7 +55,7 @@ class Quiz {
   }
 
   newOptions() {
-    let num = this.questionNum;
+    let num = this.questionNum - 1;
     let labelsAndInputs;
     if (num <= 10) {
       for (let i = 0; i < 4; i++) {
@@ -71,6 +71,7 @@ class Quiz {
       let selection = event.target.getAttribute('value');
       let answer = questions[num]['answer'];
       if (selection == answer) {
+        debugger;
         $(event.target).removeClass('option-empty');
         $(event.target).addClass('correct');
         $(event.target).attr('checked', "checked");
@@ -101,14 +102,6 @@ class Quiz {
       $('form').find('label').remove();
       $('form').find(".submit-button").remove();
     }
-  }
-
-  newQuiz() {
-    $(document).on("click", ".new-quiz", () => {
-      this.question();
-      this.formInit();
-      $(".new-quiz button").remove();
-    });
   }
 
   testFunc() {
@@ -152,9 +145,6 @@ class Quiz {
     this.userScore.push(false);
   }
 
-}
-function quizInit() {
-  startPage();
 }
 
 
@@ -207,13 +197,19 @@ function resultsPage(results) {
 /* 
 runQuiz() will include all of the other needed functions to run
 */
+function newQuiz(quiz) {
+  $(document).on("click", ".new-quiz", () => {
+    quiz.question();
+    quiz.formInit();
+    quiz.optionValidate();
+    $(".new-quiz button").remove();
+  });
+}
 
 function runQuiz() {
   startPage();
   const quizInitiate = new Quiz();
-  quizInitiate.newQuiz();
-  quizInitiate.testFunc();
-  quizInitiate.question();
+  newQuiz(quizInitiate);
   resultsPage();
 }
 
