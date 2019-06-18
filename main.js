@@ -16,6 +16,22 @@
 let userScore = [];
 let questionNum = userScore.length;
 
+class Quiz {
+  constructor(questions) {
+    this.userScore = [];
+    this.questionNum = 1;
+    this.questions = questions;
+  }
+
+  canSelect() {
+    return (this.questions > this.userScore);
+  }
+
+  startPage() {
+    
+  }
+}
+
 function startPage() {
   $("main").append(
     '<div class="question"></div>'
