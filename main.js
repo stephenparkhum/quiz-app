@@ -34,7 +34,6 @@ class Quiz {
     this.question();
     this.removeOptions();
     this.newOptions();
-    console.log('question inc. is working');
   }
 
   // OPTIONS
@@ -70,14 +69,6 @@ class Quiz {
       $('form').find(".submit-button").remove();
     }
   }
-
-  testFunc() {
-    console.log(this.userScore);
-  }
-
-  // BUTTONS
-  
-  
   correctScore() {
     this.userScore.push(true);
   }
@@ -87,14 +78,6 @@ class Quiz {
   }
 
 }
-
-
-// RESULTS
-/* 
-results() displays the completed scores of how many questions were right and how many were wrong.
-This will be stored in an array, and display in the question box after the quiz has been completed.
--- Storing the points will be counted as 'correct' or 'incorrect'
-*/
 
 // HTML FUNCTIONS
 function startPage() {
@@ -115,7 +98,6 @@ function nextBtn(num) {
     if (num.questionNum <= 10) {
       num.questionIncrement();
       $('.next-btn').hide();
-      console.log(num.questionNum);
     } else {
       resultsPage();
     }
@@ -123,29 +105,31 @@ function nextBtn(num) {
 }
 
 function optionValidate(num) {
-  $(document).on('click', 'input', function (event) {
-    let selection = event.target.getAttribute('value');
-    if (selection == num.questions[num.questionNum - 1].answer) {
-      $(event.target).removeClass('option-empty');
-      $(event.target).addClass('correct');
-      num.correctScore();
-      if (num.questionNum < 10) {
-        $('.next-btn').show();
-        num.questionNum++;
+  if (num.userScore.length != num.questionNum) {
+    $(document).on('click', 'input', function (event) {
+      let selection = event.target.getAttribute('value');
+      if (selection == num.questions[num.questionNum - 1].answer) {
+        $(event.target).removeClass('option-empty');
+        $(event.target).addClass('correct');
+        num.correctScore();
+        if (num.questionNum < 10) {
+          $('.next-btn').show();
+          num.questionNum++;
+        } else {
+          $('.next-btn').show();
+          $('form .next-btn').removeClass('next-btn');
+          $('main button').text('Complete Quiz').addClass('complete-quiz');
+        }
       } else {
+        num.wrongScore();
+        $(event.target).removeClass('option-empty');
+        $(event.target).addClass('incorrect');
+        num.questionNum++;
         $('.next-btn').show();
-        $('form .next-btn').removeClass('next-btn');
-        $('main button').text('Complete Quiz').addClass('complete-quiz');
       }
-    } else {
-      num.wrongScore();
-      $(event.target).removeClass('option-empty');
-      $(event.target).addClass('incorrect');
-      num.questionNum++;
-      $('.next-btn').show();
-    }
-
-  });
+  
+    });
+  }
 }
 
 function resultsPage(results) {
