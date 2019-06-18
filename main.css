@@ -74,13 +74,13 @@ header .new-link {
   margin: 0 auto;
 }
 
-.new-quiz {
+div.buttons {
   width: 80%;
   text-align: center;
   margin: 0 auto;
 }
 
-.new-quiz button {
+button.new-quiz {
   background-color: var(--primary);
   color: var(--white);
   padding: 10px;
@@ -195,19 +195,23 @@ input[type="button"].incorrect {
   text-align: center;
 }
 
+div.next {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .next-btn {
-  background-color: var(--primary);
-  text-align: center;
-  color: var(--white);
+  margin-top: 20px;
   align-self: center;
-  margin: 0 auto;
+  background-color: var(--primary);
+  color: var(--white);
   padding: 10px;
   font-size: 20px;
   text-transform: uppercase;
   cursor: pointer;
-  position: fixed; 
-  right: 300px;
-  bottom: 100px;
+  margin: 0;
 }
 
 /* COMPLETION */
@@ -246,12 +250,12 @@ input[type="button"].incorrect {
 
 /* MOBILE */
 @media only screen and (max-device-width : 480px) {
-  main {
+  /* main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
-  }
+  } */
   
   header {
     display: flex;
@@ -259,6 +263,7 @@ input[type="button"].incorrect {
     justify-content: center;
     top: 0;
     width: 100%;
+    text-align: center;
     font-weight: 100;
     padding: 10px 15px;
     background-color: var(--primary);
@@ -291,13 +296,12 @@ input[type="button"].incorrect {
     margin: 0 auto;
   }
   
-  .new-quiz {
-    width: 80%;
+  div.buttons{
     text-align: center;
     margin: 0 auto;
   }
   
-  .new-quiz button {
+  .new-quiz {
     background-color: var(--primary);
     color: var(--white);
     padding: 10px;
@@ -316,7 +320,7 @@ div.question {
 
 .question {
   font-size: 20px;
-  width: 70%;
+  width: 90%;
   margin: 20px auto;
   padding: 10px;
   border-top: 1px solid var(--primary);
@@ -366,12 +370,18 @@ form button {
 
 .question-text {
   align-self: center;
-  color: var(--primary)
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--primary);
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .question-count {
   align-self: center;
   font-size: 15px;
+  padding-bottom: 5px;
 }
 
 .question-count span {
@@ -414,25 +424,15 @@ input[type="button"].incorrect {
   background-color: var(--primary);
   text-align: center;
   color: var(--white);
-  align-self: center;
+  align-self: flex-end;
   margin: 0 auto;
   padding: 10px;
   font-size: 20px;
   text-transform: uppercase;
   cursor: pointer;
-  position: fixed; 
-  right: 300px;
-  bottom: 100px;
-}
-
-footer {
-  background-color: var(--primary);
-  color: white;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  padding-left: 27px;
-
+  /* position: fixed;  */
+  /* right: 300px;
+  bottom: 100px; */
 }
 
 /* footer h6 {

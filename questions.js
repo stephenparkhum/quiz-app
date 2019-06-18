@@ -56,7 +56,7 @@ let questionsList = [
   },
   {
     q_id: 6,
-    question:"Out of these heavy metal artists, who has sold the most records worldwide",
+    question:"Out of these heavy metal artists, who has sold the most records worldwide?",
     options: [
       { option: "Judas Priest"},
       { option: "Iron Maiden"},

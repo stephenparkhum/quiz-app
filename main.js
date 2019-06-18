@@ -42,8 +42,10 @@ class Quiz {
     let initialForm = `<div class="options">
     <form action="" id="option-form">
     </form>
+    <div class="next">
+    <button class="next-btn">Next</button></div>
   </div>
-  <button class="next-btn">Next</button>`;
+  `;
     $("main").append(initialForm);
     $('.next-btn').hide();
     this.newOptions();
@@ -100,8 +102,8 @@ function startPage() {
     '<div class="question"></div>'
   );
   $('.question').append('<p class="question-text"></p><p class="question-count"></p>');
-  $("main").append(`<div class="new-quiz">
-  <button>Start Quiz</button>
+  $("main").append(`<div class="buttons">
+  <button class="new-quiz">Start Quiz</button>
 </div>`);
   $(".question p:first").text(
     `Test your music knowledge with this interactive quiz!`
@@ -149,8 +151,8 @@ function optionValidate(num) {
 function resultsPage(results) {
   $(document).on('click', '.complete-quiz', () => {
     let userResults = calcResults(results);
-    if (userResults <= 10 && userResults >= 6) {
-      $('p .question-text').text('Congratulations!');
+    if (userResults < 10 && userResults > 6) {
+      $('.question-text').text('Congratulations!');
       $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10! Great job!</h4>`);
     } else if (userResults == 10) {
       $('.question-text').text('Magnificent! You got a perfect score!');
@@ -180,29 +182,31 @@ function calcResults(results) {
 /* 
 runQuiz() will include all of the other needed functions to run
 */
-function newQuiz(quiz) {
+function newQuiz() {
+  const quizInitiate = new Quiz();
   $(document).on("click", ".new-quiz", () => {
-    quiz.question();
-    quiz.formInit();
-    optionValidate(quiz);
-    nextBtn(quiz);
-    $(".new-quiz button").remove();
+    quizInitiate.question();
+    quizInitiate.formInit();
+    $('div .buttons').hide();
+    optionValidate(quizInitiate);
+    nextBtn(quizInitiate);
+    $(".new-quiz").hide();
+    resultsPage(quizInitiate.userScore);
+    quizRestart();
   });
 }
 
-function quizRestart(quiz) {
+function quizRestart() {
   $(document).on("click", ".js-try-again", () => {
-    newQuiz(quiz);
+    location.reload(true);
   });
 }
 
 
 function runQuiz() {
   startPage();
-  const quizInitiate = new Quiz();
-  newQuiz(quizInitiate);
-  resultsPage(quizInitiate.userScore);
-  quizRestart(quizInitiate);
+  newQuiz();
+  quizRestart();
 }
 
 runQuiz();
