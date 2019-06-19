@@ -28,7 +28,7 @@ body {
   color: black;
 }
 
-@media only screen and (min-device-width: 769px){ 
+@media only screen and (min-device-width: 768px){ 
   main {
     display: flex;
     flex-direction: column;
@@ -279,7 +279,7 @@ body {
 
 
 /* MOBILE */
-@media only screen and (min-device-width: 200px) and (max-device-width: 768px){
+@media only screen and (min-device-width: 300px) and (max-device-width: 768px) {
   /* main {
     display: flex;
     flex-direction: column;
