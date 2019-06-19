@@ -371,6 +371,9 @@ form {
 display: flex;
 flex-direction: column;
 justify-content: center;
+-webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 form label input {
@@ -386,8 +389,8 @@ input[type="button"] {
   margin: 5px 0;
   border: 1px solid var(--dark);
   -webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 input[type="button"]:hover {
