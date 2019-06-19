@@ -214,6 +214,29 @@ div.next {
   margin: 0;
 }
 
+.progress-score {
+  position: fixed; 
+  left: 10px;
+  top: 200px;
+  padding: 20px;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  box-shadow: 1px 5px 10px var(--primary);
+}
+
+.progress-score h3 {
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--primary);
+}
+
+span.right-count {
+  color: green;
+}
+
+span.wrong-count {
+  color: var(--incorrect);
+}
+
 /* COMPLETION */
 .complete-quiz {
   background-color: green;

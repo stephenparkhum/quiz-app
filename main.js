@@ -36,6 +36,26 @@ class Quiz {
     this.newOptions();
   }
 
+  progressScore() {
+    let wrongCount;
+    let rightCount;
+    let userScore = this.userScore;
+    for (let i = 0; i < userScore.length; i++) {
+      if (this.userScore[i] == true) {
+        rightCount++;
+      } else {
+        wrongCount++;
+      }
+    }
+
+
+    let questionNum = this.questionNum;
+    $('div.progress-score').append('<h3></h3>');
+    $('div.progress-score h3').text(`Scoreboard`);
+    $('div.progress-score').append(`<p><span class="right-count">Right:</span> ${rightCount}</p>`);
+    $('div.progress-score').append(`<p><span class="wrong-count">Wrong:</span> ${wrongCount}</p>`);
+  }
+
   // OPTIONS
   formInit() {
     let initialForm = `<div class="options">
@@ -44,10 +64,12 @@ class Quiz {
     <div class="next">
     <button class="next-btn">Next</button></div>
   </div>
+  <div class="progress-score"></div>
   `;
     $("main").append(initialForm);
     $('.next-btn').hide();
     this.newOptions();
+    this.progressScore();
   }
 
   newOptions() {
