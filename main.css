@@ -384,7 +384,10 @@ input[type="button"] {
   padding: 10px;
   cursor: pointer;
   margin: 5px 0;
-  border: 1px solid var(--dark)
+  border: 1px solid var(--dark);
+  -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
 }
 
 input[type="button"]:hover {
