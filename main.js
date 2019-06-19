@@ -31,6 +31,7 @@ class Quiz {
   }
 
   questionIncrement() {
+    this.questionNum++;
     this.question();
     this.removeOptions();
     this.newOptions();
@@ -133,22 +134,24 @@ function nextBtn(num) {
 function selectOne() {
     $('input').off('click');
     console.log('selectOne is running');
-}
+};
+
+
+/* 
+Make it so the NEXT button increments the quesitonNum
+
+*/ 
 
 function optionValidate(num) {
     $(document).on('click', 'input', function (event) {
       let selection = event.target.getAttribute('value');
       if (selection == num.questions[num.questionNum - 1].answer && num.questionNum == num.userScore.length + 1) {
-        console.log(num.userScore.length);
         $(event.target).removeClass('option-empty');
         $(event.target).addClass('correct');
         $(event.target).attr("checked", 'true');
         if (num.questionNum < 10) {
           $('.next-btn').show();
-          num.questionNum++;
           num.correctScore();
-          console.log(num.questionNum);
-          console.log(num.userScore.length);
         } else {
           $('.next-btn').show();
           $('form .next-btn').removeClass('next-btn');
@@ -157,13 +160,10 @@ function optionValidate(num) {
       } else if (selection != num.questions[num.questionNum - 1].answer && num.questionNum == num.userScore.length + 1){
         $(event.target).removeClass('option-empty');
         $(event.target).addClass('incorrect');
-        num.questionNum++;
         num.wrongScore();
-        console.log(num.userScore.length);
-        console.log(num.questionNum);
         $('.next-btn').show();
       } else {
-        console.log('this is the final else');
+        return;
       }
   
     });
