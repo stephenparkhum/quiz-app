@@ -153,6 +153,7 @@ function optionValidate(num) {
           $('.next-btn').show();
           num.correctScore();
         } else {
+          num.correctScore();
           num.questionNum++;
           $('.next-btn').show();
           $('form .next-btn').removeClass('next-btn');
@@ -180,19 +181,18 @@ function resultsPage(results, quiz) {
     $('button.js-try-again').removeClass('complete-quiz');
     $('button.js-try-again').removeClass('new-quiz');
     $('button.js-try-again').text('TRY AGAIN');
+    quiz.progressScore();
     let userResults = calcResults(results);
     if (userResults < 10 && userResults > 6) {
       $('.question-text').text('Congratulations!');
       $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10! Great job!</h4>`);
     } else if (userResults == 10) {
-      quiz.progressScore();
       $('.question-text').text('Magnificent! You got a perfect score!');
       $('.question').append(`<h4>You got a perfect score! <span>${calcResults(results)}</span> out of 10!</h4>`);
     } else {
       $('.question-text').text('Bummer! Better luck next time!');
       $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10. Better luck next time!</h4>`);
     }
-    
   });
 }
 

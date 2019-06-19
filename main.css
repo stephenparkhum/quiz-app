@@ -28,254 +28,258 @@ body {
   color: black;
 }
 
-main {
+@media only screen and (min-device-width: 769px){ 
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    top: 0;
+    width: 100%;
+    font-weight: 100;
+    padding: 10px 15px;
+    background-color: var(--primary);
+    color: var(--white);
+    box-shadow: 1px 1px 10px var(--primary);
+    border-bottom: 10px solid var(--incorrect);
+  }
+  
+  header h1 {
+    align-self: center;
+    font-weight: 100;
+  }
+  
+  header .new-link {
+    color: var(--white);
+    align-self: center;
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 15px;
+    margin-left: 30px;
+    background-color: var(--incorrect);
+    border-radius: 10px;
+  }
+  
+  /* STARTING PAGE */
+  
+  .start {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  div.buttons {
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  button.new-quiz {
+    background-color: var(--primary);
+    border-radius: 10px;
+    color: var(--white);
+    padding: 15px;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  
+  /* QUESTION PAGE */
+  div.question {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 200px;
+    background-color: var(--white);
+  }
+  
+  .question {
+    font-size: 20px;
+    width: 40%;
+    margin: 20px auto;
+    padding: 30px;
+    border-top: 2px solid var(--primary);
+    border-left: 2px solid var(--primary);
+    border-right: 2px solid var(--primary);
+    border-bottom: 15px solid var(--primary);
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
+  }
+  
+  form label input {
+    margin: 10px;
+  }
+  
+  input[type="button"] {
+    background-color: var(--white);
+    font-size: 15px;
+    width: 80%;
+    padding: 15px;
+    cursor: pointer;
+    margin: 0 auto;
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+  }
+  
+  input[type="button"]:hover {
+    background-color: var(--primary);
+    color: var(--white);
+    border: 1px solid var(--white);
+  
+  
+  }
+  
+  .op-selected {
+    background-color: var(--dark);
+    color: var(--white); 
+    font-weight: 500;
+  }
+  
+  form button {
+    width: 100px;
+  }
+  
+  .question-text {
+    align-self: center;
+    color: var(--primary)
+  }
+  
+  .question-count {
+    align-self: center;
+    font-size: 15px;
+  }
+  
+  .question-count span {
+    color: var(--correct);
+  }
+  
+  .options {
+    width: 35%;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+    box-shadow: 1px 5px 10px var(--primary);
+  }
+  
+  input[type="button"].correct {
+    background-color: var(--correct);
+    color: var(--white);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  input[type="button"].incorrect {
+    background-color: var(--incorrect);
+    color: var(--white);
+  }
+  
+  .q-num {
+    font-size: 15px;
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .score {
+    text-align: center;
+  }
+  
+  div.next {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .next-btn {
+    margin-top: 20px;
+    align-self: center;
+    background-color: var(--primary);
+    border-radius: 10px;
+    width: 50%;
+    color: var(--white);
+    padding: 10px;
+    font-size: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin: 0;
+  }
+  
+  .progress-score {
+    position: fixed; 
+    width: 200px;
+    left: 10px;
+    top: 200px;
+    padding: 20px;
+    color: white;
+    background-color: var(--primary);
+    border-radius: 10px;
+    box-shadow: 1px 5px 10px var(--primary);
+  }
+  
+  .progress-score h3 {
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--primary);
+  }
+  
+  span.right-count {
+    color: green;
+  }
+  
+  span.wrong-count {
+    color: var(--incorrect);
+  }
+  
+  /* COMPLETION */
+  .complete-quiz {
+    background-color: green;
+    color: var(--white); 
+    border-radius: 10px;
+    padding: 15px;
+  
+  }
+  .finish {
+    text-align: center;
+  }
+  
+  .finish button {
+    text-align: center;
+    padding: 20px;
+    background-color: black;
+    color: var(--white);
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .js-try-again {
+    background-color: var(--primary);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: 400;
+  }
 }
 
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  top: 0;
-  width: 100%;
-  font-weight: 100;
-  padding: 10px 15px;
-  background-color: var(--primary);
-  color: var(--white);
-  box-shadow: 1px 1px 10px var(--primary);
-  border-bottom: 10px solid var(--incorrect);
-}
 
-header h1 {
-  align-self: center;
-  font-weight: 100;
-}
-
-header .new-link {
-  color: var(--white);
-  align-self: center;
-  font-weight: 500;
-  font-size: 20px;
-  text-decoration: none;
-  padding: 15px;
-  margin-left: 30px;
-  background-color: var(--incorrect);
-  border-radius: 10px;
-}
-
-/* STARTING PAGE */
-
-.start {
-  text-align: center;
-  width: 80%;
-  margin: 0 auto;
-}
-
-div.buttons {
-  width: 80%;
-  text-align: center;
-  margin: 0 auto;
-}
-
-button.new-quiz {
-  background-color: var(--primary);
-  border-radius: 10px;
-  color: var(--white);
-  padding: 15px;
-  font-size: 25px;
-  cursor: pointer;
-}
-
-/* QUESTION PAGE */
-div.question {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 200px;
-  background-color: var(--white);
-}
-
-.question {
-  font-size: 20px;
-  width: 40%;
-  margin: 20px auto;
-  padding: 30px;
-  border-top: 2px solid var(--primary);
-  border-left: 2px solid var(--primary);
-  border-right: 2px solid var(--primary);
-  border-bottom: 15px solid var(--primary);
-  border-radius: 10px;
-  text-align: center;
-}
-
-form {
-display: flex;
-flex-direction: column;
-justify-content: center;
-}
-
-form label input {
-  margin: 10px;
-}
-
-input[type="button"] {
-  background-color: var(--white);
-  font-size: 15px;
-  width: 80%;
-  padding: 15px;
-  cursor: pointer;
-  margin: 0 auto;
-  border: 1px solid var(--primary);
-  border-radius: 10px;
-}
-
-input[type="button"]:hover {
-  background-color: var(--primary);
-  color: var(--white);
-  border: 1px solid var(--white);
-
-
-}
-
-.op-selected {
-  background-color: var(--dark);
-  color: var(--white); 
-  font-weight: 500;
-}
-
-form button {
-  width: 100px;
-}
-
-.question-text {
-  align-self: center;
-  color: var(--primary)
-}
-
-.question-count {
-  align-self: center;
-  font-size: 15px;
-}
-
-.question-count span {
-  color: var(--correct);
-}
-
-.options {
-  width: 35%;
-  margin: 40px auto;
-  padding: 20px;
-  border: 1px solid var(--primary);
-  border-radius: 10px;
-  box-shadow: 1px 5px 10px var(--primary);
-}
-
-input[type="button"].correct {
-  background-color: var(--correct);
-  color: var(--white);
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-input[type="button"].incorrect {
-  background-color: var(--incorrect);
-  color: var(--white);
-}
-
-.q-num {
-  font-size: 15px;
-  width: 30%;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.score {
-  text-align: center;
-}
-
-div.next {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.next-btn {
-  margin-top: 20px;
-  align-self: center;
-  background-color: var(--primary);
-  border-radius: 10px;
-  width: 50%;
-  color: var(--white);
-  padding: 10px;
-  font-size: 20px;
-  text-transform: uppercase;
-  cursor: pointer;
-  margin: 0;
-}
-
-.progress-score {
-  position: fixed; 
-  width: 200px;
-  left: 10px;
-  top: 200px;
-  padding: 20px;
-  color: white;
-  background-color: var(--primary);
-  border-radius: 10px;
-  box-shadow: 1px 5px 10px var(--primary);
-}
-
-.progress-score h3 {
-  padding-bottom: 5px;
-  border-bottom: 1px solid var(--primary);
-}
-
-span.right-count {
-  color: green;
-}
-
-span.wrong-count {
-  color: var(--incorrect);
-}
-
-/* COMPLETION */
-.complete-quiz {
-  background-color: green;
-  color: var(--white); 
-  border-radius: 10px;
-  padding: 15px;
-
-}
-.finish {
-  text-align: center;
-}
-
-.finish button {
-  text-align: center;
-  padding: 20px;
-  background-color: black;
-  color: var(--white);
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.js-try-again {
-  background-color: var(--primary);
-  color: var(--white);
-  border-radius: 10px;
-  padding: 15px;
-  font-size: 20px;
-  cursor: pointer;
-  font-weight: 400;
-}
 
 
 /* MOBILE */
-@media only screen and (min-device-width: 200px) and (max-device-width : 500px) {
+@media only screen and (min-device-width: 200px) and (max-device-width: 768px){
   /* main {
     display: flex;
     flex-direction: column;
