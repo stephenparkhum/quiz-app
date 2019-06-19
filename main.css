@@ -380,6 +380,12 @@ form label input {
   margin: 5px;
 }
 
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 input[type="button"] {
   background-color: var(--white);
   font-size: 15px;
@@ -388,15 +394,12 @@ input[type="button"] {
   cursor: pointer;
   margin: 5px 0;
   border: 1px solid var(--dark);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  
 }
 
 input[type="button"]:hover {
   background-color: var(--primary);
   color: var(--white);
-
 }
 
 .op-selected {
