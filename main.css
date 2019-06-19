@@ -263,6 +263,16 @@ span.wrong-count {
   cursor: pointer;
 }
 
+.js-try-again {
+  background-color: var(--primary);
+  color: var(--white);
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 400;
+}
+
 
 /* MOBILE */
 @media only screen and (max-device-width : 500px) {
@@ -318,6 +328,15 @@ span.wrong-count {
   }
   
   .new-quiz {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: 100;
+  }
+
+  .js-try-again {
     background-color: var(--primary);
     color: var(--white);
     padding: 10px;

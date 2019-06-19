@@ -93,6 +93,7 @@ class Quiz {
       $('form').find(".submit-button").remove();
     }
   }
+  
   correctScore() {
     this.userScore.push(true);
   }
@@ -159,6 +160,14 @@ function optionValidate(num) {
 
 function resultsPage(results) {
   $(document).on('click', '.complete-quiz', () => {
+    $('button.new-quiz').show();
+    $('.options').remove();
+    $('.question-count').remove();
+    $('.next-btn').remove();
+    $('button.new-quiz').addClass('js-try-again');
+    $('button.js-try-again').removeClass('complete-quiz');
+    $('button.js-try-again').removeClass('new-quiz');
+    $('button.js-try-again').text('TRY AGAIN');
     let userResults = calcResults(results);
     if (userResults < 10 && userResults > 6) {
       $('.question-text').text('Congratulations!');
@@ -170,10 +179,7 @@ function resultsPage(results) {
       $('.question-text').text('Bummer! Better luck next time!');
       $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10. Better luck next time!</h4>`);
     }
-    $('.options').remove();
-    $('.question-count').remove();
-    $('.next-btn').remove();
-    $('.new-quiz').append('<button class="js-try-again">Try Again</button>');
+    
   });
 }
 
