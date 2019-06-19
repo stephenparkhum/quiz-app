@@ -153,6 +153,7 @@ function optionValidate(num) {
           $('.next-btn').show();
           num.correctScore();
         } else {
+          num.questionNum++;
           $('.next-btn').show();
           $('form .next-btn').removeClass('next-btn');
           $('main button').text('Complete Quiz').addClass('complete-quiz');
@@ -169,7 +170,7 @@ function optionValidate(num) {
     });
 }
 
-function resultsPage(results) {
+function resultsPage(results, quiz) {
   $(document).on('click', '.complete-quiz', () => {
     $('button.new-quiz').show();
     $('.options').remove();
@@ -184,6 +185,7 @@ function resultsPage(results) {
       $('.question-text').text('Congratulations!');
       $('.question').append(`<h4>Your score is <span>${calcResults(results)}</span> out of 10! Great job!</h4>`);
     } else if (userResults == 10) {
+      quiz.progressScore();
       $('.question-text').text('Magnificent! You got a perfect score!');
       $('.question').append(`<h4>You got a perfect score! <span>${calcResults(results)}</span> out of 10!</h4>`);
     } else {
@@ -217,7 +219,7 @@ function newQuiz() {
     optionValidate(quizInitiate);
     nextBtn(quizInitiate);
     $(".new-quiz").hide();
-    resultsPage(quizInitiate.userScore);
+    resultsPage(quizInitiate.userScore, quizInitiate);
     quizRestart();
   });
 }

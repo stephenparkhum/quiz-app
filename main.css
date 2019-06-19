@@ -275,7 +275,7 @@ span.wrong-count {
 
 
 /* MOBILE */
-@media only screen and (max-device-width : 500px) {
+@media only screen and (min-device-width: 200px) and (max-device-width : 500px) {
   /* main {
     display: flex;
     flex-direction: column;
