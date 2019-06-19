@@ -36,24 +36,26 @@ class Quiz {
     this.newOptions();
   }
 
+  scoreboardInit() {
+    $('div.progress-score').append('<h3></h3>');
+    $('div.progress-score h3').text(`Scoreboard`);
+    $('div.progress-score').append(`<p>Correct: <span class="right-count">0</span></p>`);
+    $('div.progress-score').append(`<p>Incorrect: <span class="wrong-count">0</span></p>`);
+  }
+
   progressScore() {
-    let wrongCount;
-    let rightCount;
+    let wrongCount = 0;
+    let rightCount = 0;
     let userScore = this.userScore;
     for (let i = 0; i < userScore.length; i++) {
       if (this.userScore[i] == true) {
         rightCount++;
+        $('span.right-count').text(`${rightCount}`);
       } else {
         wrongCount++;
+        $('span.wrong-count').text(`${wrongCount}`);
       }
-    }
-
-
-    let questionNum = this.questionNum;
-    $('div.progress-score').append('<h3></h3>');
-    $('div.progress-score h3').text(`Scoreboard`);
-    $('div.progress-score').append(`<p><span class="right-count">Right:</span> ${rightCount}</p>`);
-    $('div.progress-score').append(`<p><span class="wrong-count">Wrong:</span> ${wrongCount}</p>`);
+    }   
   }
 
   // OPTIONS
@@ -69,7 +71,7 @@ class Quiz {
     $("main").append(initialForm);
     $('.next-btn').hide();
     this.newOptions();
-    this.progressScore();
+    this.scoreboardInit();
   }
 
   newOptions() {
@@ -119,6 +121,7 @@ function nextBtn(num) {
   $(document).on("click", ".next-btn", () => {
     if (num.questionNum <= 10) {
       num.questionIncrement();
+      num.progressScore();
       $('.next-btn').hide();
     } else {
       resultsPage();

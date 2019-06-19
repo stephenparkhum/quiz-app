@@ -82,9 +82,10 @@ div.buttons {
 
 button.new-quiz {
   background-color: var(--primary);
+  border-radius: 10px;
   color: var(--white);
-  padding: 10px;
-  font-size: 20px;
+  padding: 15px;
+  font-size: 25px;
   cursor: pointer;
 }
 
@@ -206,6 +207,8 @@ div.next {
   margin-top: 20px;
   align-self: center;
   background-color: var(--primary);
+  border-radius: 10px;
+  width: 50%;
   color: var(--white);
   padding: 10px;
   font-size: 20px;
@@ -216,10 +219,12 @@ div.next {
 
 .progress-score {
   position: fixed; 
+  width: 200px;
   left: 10px;
   top: 200px;
   padding: 20px;
-  border: 1px solid var(--primary);
+  color: white;
+  background-color: var(--primary);
   border-radius: 10px;
   box-shadow: 1px 5px 10px var(--primary);
 }
@@ -241,6 +246,8 @@ span.wrong-count {
 .complete-quiz {
   background-color: green;
   color: var(--white); 
+  border-radius: 10px;
+  padding: 15px;
 
 }
 .finish {
@@ -256,23 +263,9 @@ span.wrong-count {
   cursor: pointer;
 }
 
-/* TEST CODE ** DELETE LATER ***/
-
-#myProgress {
-  width: 100%;
-  background-color: var(--white);
-}
-
-#statusBar {
-  width: 0%;
-  height: 10px;
-  background-color:var(--primary);
-}
-
-
 
 /* MOBILE */
-@media only screen and (max-device-width : 480px) {
+@media only screen and (max-device-width : 500px) {
   /* main {
     display: flex;
     flex-direction: column;
@@ -412,8 +405,9 @@ form button {
 }
 
 .options {
-  width: 65%;
-  margin: 25px auto;
+  width: 80%;
+  height: 90%;
+  margin: 10px auto;
   padding: 20px;
   border: 1px solid var(--primary);
   border-radius: 10px;
@@ -458,10 +452,51 @@ input[type="button"].incorrect {
   bottom: 100px; */
 }
 
-/* footer h6 {
-  font-weight: 100;
-  font-size: 12px;
-} */
+div.progress-score {
+  position: fixed; 
+  width: 100%;
+  left: 0px;
+  top: 610px;
+  height: 75px;
+  bottom: 0;
+  margin-top: 0;
+  padding: 5px 0px 10px 10px;
+  color: white;
+  background-color: var(--primary);
+  border-top: 5px solid var(--incorrect);
+  border-radius: 0;
+}
 
+.progress-score h3 {
+  margin: 0;
+  padding-bottom: 0;
+  font-size: .95rem;
+  padding-left: 20px;
+}
+
+div.progress-score p {
+  font-size: .85rem;
+  display: inline;
+  padding-left: 20px;
+  padding-bottom: 0;
+  margin: 0;
+}
+
+span.right-count {
+  color: green;
+}
+
+span.wrong-count {
+  color: var(--incorrect);
+}
+
+.complete-quiz {
+  background-color: green;
+  color: var(--white); 
+  border-radius: 10px;
+  padding: 15px;
+  margin: 0;
+
+}
 
   }
